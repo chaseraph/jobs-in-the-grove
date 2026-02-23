@@ -16,9 +16,9 @@
   --gray: #6b7280;
   --gray-light: #e5e7eb;
   --white: #ffffff;
-  --radius: 8px;
-  --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+  --radius: 12px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md: 0 6px 16px rgba(0,0,0,0.1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,17 +37,18 @@ a:hover { text-decoration: underline; }
 .header {
   background: var(--green);
   color: var(--white);
-  padding: 1.5rem 1rem;
+  padding: 2rem 1rem 1.75rem;
   text-align: center;
 }
 .header h1 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
 }
 .header p {
-  font-size: 1rem;
-  opacity: 0.85;
+  font-size: 1.05rem;
+  opacity: 0.9;
 }
 
 /* CTA Bar */
@@ -137,13 +138,13 @@ a:hover { text-decoration: underline; }
   background: var(--white);
   border-radius: var(--radius);
   border: 1px solid var(--gray-light);
-  padding: 1.25rem;
+  padding: 1.5rem;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  transition: box-shadow 0.15s;
+  transition: box-shadow 0.2s, transform 0.2s;
 }
-.card:hover { box-shadow: var(--shadow-md); }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .card.featured {
   border: 2px solid var(--gold);
 }
@@ -277,12 +278,12 @@ a:hover { text-decoration: underline; }
 
 <header class="header">
   <h1>Jobs in the Grove</h1>
-  <p>Local jobs for our community</p>
+  <p>Your next opportunity is closer than you think.</p>
 </header>
 
 <nav class="cta-bar">
-  <a href="post.html" class="btn btn-gold">Post a Job</a>
-  <a href="resume.html" class="btn btn-outline">Looking for work?</a>
+  <a href="post.html" class="btn btn-gold">Hiring? Post a Job</a>
+  <a href="resume.html" class="btn btn-outline">I'm looking for work</a>
 </nav>
 
 <div class="filter-bar">
@@ -324,10 +325,10 @@ a:hover { text-decoration: underline; }
 </main>
 
 <footer class="footer">
-  <div>Powered by <a href="https://newsinthegrove.com">News in the Grove</a></div>
+  <div>A community project from <a href="https://newsinthegrove.com">News in the Grove</a></div>
   <div class="footer-links">
     <a href="post.html">Post a Job</a>
-    <a href="resume.html">Submit Your Resume</a>
+    <a href="resume.html">Submit Your Profile</a>
   </div>
 </footer>
 
@@ -439,8 +440,8 @@ a:hover { text-decoration: underline; }
     if (filtered.length === 0) {
       listingsEl.innerHTML =
         '<div class="state-message">' +
-          '<h2>No jobs found</h2>' +
-          '<p>Try adjusting your filters or check back soon for new listings.</p>' +
+          '<h2>Nothing matching those filters</h2>' +
+          '<p>Try broadening your search, or check back soon &mdash; new jobs pop up all the time.</p>' +
           '<a href="post.html" class="btn btn-gold">Post a Job</a>' +
         '</div>';
       return;
@@ -467,8 +468,8 @@ a:hover { text-decoration: underline; }
         if (listings.length === 0) {
           listingsEl.innerHTML =
             '<div class="state-message">' +
-              '<h2>No jobs posted yet</h2>' +
-              '<p>Check back soon! New jobs are added regularly.</p>' +
+              '<h2>No jobs posted yet &mdash; be the first!</h2>' +
+              '<p>Know someone hiring? Spread the word. New listings show up here as soon as they\'re approved.</p>' +
               '<a href="post.html" class="btn btn-gold">Post a Job</a>' +
             '</div>';
           return;

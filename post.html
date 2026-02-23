@@ -16,8 +16,8 @@
   --gray: #6b7280;
   --gray-light: #e5e7eb;
   --white: #ffffff;
-  --radius: 8px;
-  --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  --radius: 12px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
   --red: #dc2626;
 }
 
@@ -36,11 +36,11 @@ a:hover { text-decoration: underline; }
 .header {
   background: var(--green);
   color: var(--white);
-  padding: 1.5rem 1rem;
+  padding: 2rem 1rem 1.75rem;
   text-align: center;
 }
-.header h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem; }
-.header p { font-size: 1rem; opacity: 0.85; }
+.header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.35rem; letter-spacing: -0.01em; }
+.header p { font-size: 1.05rem; opacity: 0.9; }
 .header a { color: var(--white); }
 
 .form-container {
@@ -54,7 +54,13 @@ a:hover { text-decoration: underline; }
   border-radius: var(--radius);
   border: 1px solid var(--gray-light);
   box-shadow: var(--shadow);
-  padding: 2rem;
+  padding: 2rem 2rem 2.5rem;
+}
+.form-intro {
+  font-size: 0.95rem;
+  color: var(--gray);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 
 .section-title {
@@ -212,13 +218,15 @@ a:hover { text-decoration: underline; }
 
 <header class="header">
   <h1><a href="index.html">Jobs in the Grove</a></h1>
-  <p>Post a job to reach local candidates</p>
+  <p>Hiring? Let your neighbors know.</p>
 </header>
 
 <div class="form-container">
   <form id="job-form" class="form-card" novalidate>
 
-    <h2 class="section-title">Company Information</h2>
+    <p class="form-intro">Fill out the basics below and we'll get your listing in front of local job seekers. Free to post, reviewed within a day or two.</p>
+
+    <h2 class="section-title">About Your Business</h2>
 
     <div class="field" data-required>
       <label for="company_name">Company Name <span class="required">*</span></label>
@@ -247,7 +255,7 @@ a:hover { text-decoration: underline; }
       <input type="url" id="company_website" name="company_website" placeholder="https://">
     </div>
 
-    <h2 class="section-title">Job Details</h2>
+    <h2 class="section-title">Tell Us About the Job</h2>
 
     <div class="field" data-required>
       <label for="title">Job Title <span class="required">*</span></label>
@@ -339,17 +347,17 @@ a:hover { text-decoration: underline; }
 
     <input type="hidden" name="outlet" value="NitG">
 
-    <button type="submit" class="btn btn-gold" id="submit-btn">Post Your Job</button>
+    <button type="submit" class="btn btn-gold" id="submit-btn">Get the Word Out</button>
 
     <div class="result-message" id="result-message"></div>
   </form>
 </div>
 
 <footer class="footer">
-  <div>Powered by <a href="https://newsinthegrove.com">News in the Grove</a></div>
+  <div>A community project from <a href="https://newsinthegrove.com">News in the Grove</a></div>
   <div class="footer-links">
-    <a href="index.html">View Job Listings</a>
-    <a href="resume.html">Submit Your Resume</a>
+    <a href="index.html">Browse Jobs</a>
+    <a href="resume.html">Submit Your Profile</a>
   </div>
 </footer>
 
@@ -430,7 +438,7 @@ a:hover { text-decoration: underline; }
     })
     .then(function(result) {
       if (result.ok) {
-        resultEl.textContent = 'Your job listing has been submitted for review. It will appear on the board once approved.';
+        resultEl.textContent = 'Nice! Your listing is in for review. It\u2019ll go live on the board once we give it a look.';
         resultEl.className = 'result-message success';
         form.reset();
         descCount.textContent = '0 / 2,000';
@@ -445,7 +453,7 @@ a:hover { text-decoration: underline; }
     })
     .finally(function() {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Post Your Job';
+      submitBtn.textContent = 'Get the Word Out';
     });
   });
 

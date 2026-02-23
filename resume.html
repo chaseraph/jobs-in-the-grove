@@ -16,8 +16,8 @@
   --gray: #6b7280;
   --gray-light: #e5e7eb;
   --white: #ffffff;
-  --radius: 8px;
-  --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  --radius: 12px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
   --red: #dc2626;
 }
 
@@ -36,11 +36,11 @@ a:hover { text-decoration: underline; }
 .header {
   background: var(--green);
   color: var(--white);
-  padding: 1.5rem 1rem;
+  padding: 2rem 1rem 1.75rem;
   text-align: center;
 }
-.header h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem; }
-.header p { font-size: 1rem; opacity: 0.85; }
+.header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.35rem; letter-spacing: -0.01em; }
+.header p { font-size: 1.05rem; opacity: 0.9; }
 .header a { color: var(--white); }
 
 .form-container {
@@ -54,7 +54,13 @@ a:hover { text-decoration: underline; }
   border-radius: var(--radius);
   border: 1px solid var(--gray-light);
   box-shadow: var(--shadow);
-  padding: 2rem;
+  padding: 2rem 2rem 2.5rem;
+}
+.form-intro {
+  font-size: 0.95rem;
+  color: var(--gray);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 
 .section-title {
@@ -247,13 +253,15 @@ a:hover { text-decoration: underline; }
 
 <header class="header">
   <h1><a href="index.html">Jobs in the Grove</a></h1>
-  <p>Connect with local employers</p>
+  <p>Put yourself out there &mdash; let local employers find you.</p>
 </header>
 
 <div class="form-container">
   <form id="resume-form" class="form-card" novalidate>
 
-    <h2 class="section-title">Personal Information</h2>
+    <p class="form-intro">Looking for work around here? Share a bit about yourself and we'll connect you with local employers who need people like you.</p>
+
+    <h2 class="section-title">A Little About You</h2>
 
     <div class="field" data-required>
       <label for="full_name">Full Name <span class="required">*</span></label>
@@ -277,7 +285,7 @@ a:hover { text-decoration: underline; }
       <input type="text" id="city" name="city" placeholder="Forest Grove, OR">
     </div>
 
-    <h2 class="section-title">Professional Profile</h2>
+    <h2 class="section-title">What You Bring to the Table</h2>
 
     <div class="field">
       <label for="headline">Headline</label>
@@ -328,7 +336,7 @@ a:hover { text-decoration: underline; }
       <div class="error-msg" id="file-error">Please upload a PDF file under 5MB.</div>
     </div>
 
-    <h2 class="section-title">Preferences</h2>
+    <h2 class="section-title">What Works for You</h2>
 
     <div class="field">
       <label for="available_starting">Available Starting</label>
@@ -346,19 +354,19 @@ a:hover { text-decoration: underline; }
     </div>
 
     <div class="privacy-note">
-      Your information will only be shared with verified local employers.
+      Your info stays local &mdash; we only share it with verified community employers.
     </div>
 
-    <button type="submit" class="btn btn-gold" id="submit-btn">Submit Your Profile</button>
+    <button type="submit" class="btn btn-gold" id="submit-btn">Put Me Out There</button>
 
     <div class="result-message" id="result-message"></div>
   </form>
 </div>
 
 <footer class="footer">
-  <div>Powered by <a href="https://newsinthegrove.com">News in the Grove</a></div>
+  <div>A community project from <a href="https://newsinthegrove.com">News in the Grove</a></div>
   <div class="footer-links">
-    <a href="index.html">View Job Listings</a>
+    <a href="index.html">Browse Jobs</a>
     <a href="post.html">Post a Job</a>
   </div>
 </footer>
@@ -506,7 +514,7 @@ a:hover { text-decoration: underline; }
       })
       .then(function(result) {
         if (result.ok) {
-          resultEl.textContent = 'Your profile has been submitted! We will share it with local employers looking for candidates like you.';
+          resultEl.textContent = 'You\u2019re in! We\u2019ll get your profile in front of local employers who are looking for folks like you.';
           resultEl.className = 'result-message success';
           form.reset();
           skillsCount.textContent = '0 / 2,000';
@@ -521,7 +529,7 @@ a:hover { text-decoration: underline; }
       })
       .finally(function() {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Your Profile';
+        submitBtn.textContent = 'Put Me Out There';
       });
   });
 
