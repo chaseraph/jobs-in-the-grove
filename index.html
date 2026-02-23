@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobs in the Grove — Local Jobs for Our Community</title>
+<meta name="description" content="Find local jobs in Forest Grove, Banks, and Gales Creek, Oregon. Browse listings from community employers.">
+<style>
+:root {
+  --green: #1B4332;
+  --green-light: #2D6A4F;
+  --gold: #D4A853;
+  --gold-hover: #C49B45;
+  --cream: #FDF6E3;
+  --dark: #1a1a1a;
+  --gray: #6b7280;
+  --gray-light: #e5e7eb;
+  --white: #ffffff;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--dark);
+  background: var(--cream);
+  line-height: 1.6;
+}
+
+a { color: var(--green); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Header */
+.header {
+  background: var(--green);
+  color: var(--white);
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+.header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.header p {
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+/* CTA Bar */
+.cta-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-light);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-block;
+  padding: 0.625rem 1.5rem;
+  border-radius: var(--radius);
+  font-size: 0.938rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, transform 0.1s;
+}
+.btn:hover { transform: translateY(-1px); text-decoration: none; }
+.btn:active { transform: translateY(0); }
+.btn-gold {
+  background: var(--gold);
+  color: var(--dark);
+}
+.btn-gold:hover { background: var(--gold-hover); color: var(--dark); }
+.btn-outline {
+  background: transparent;
+  color: var(--green);
+  border: 2px solid var(--green);
+}
+.btn-outline:hover { background: var(--green); color: var(--white); }
+
+/* Filter Bar */
+.filter-bar {
+  max-width: 1200px;
+  margin: 1.5rem auto 0;
+  padding: 0 1rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.filter-bar select,
+.filter-bar input[type="text"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--gray-light);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  background: var(--white);
+  color: var(--dark);
+  flex: 1;
+  min-width: 160px;
+}
+.filter-bar select:focus,
+.filter-bar input:focus {
+  outline: 2px solid var(--green);
+  outline-offset: -1px;
+}
+.btn-clear {
+  background: transparent;
+  color: var(--gray);
+  border: 1px solid var(--gray-light);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+.btn-clear:hover { background: var(--gray-light); }
+
+/* Listings */
+.listings {
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  padding: 0 1rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 640px) { .listings { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .listings { grid-template-columns: repeat(3, 1fr); } }
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--gray-light);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.15s;
+}
+.card:hover { box-shadow: var(--shadow-md); }
+.card.featured {
+  border: 2px solid var(--gold);
+}
+.card-featured-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gold-hover);
+  margin-bottom: 0.5rem;
+}
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--dark);
+}
+.card-title a { color: var(--dark); }
+.card-title a:hover { color: var(--green); }
+.card-company {
+  font-size: 0.938rem;
+  color: var(--gray);
+  margin-bottom: 0.5rem;
+}
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  align-items: center;
+}
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.badge-fulltime { background: #d1fae5; color: #065f46; }
+.badge-parttime { background: #dbeafe; color: #1e40af; }
+.badge-contract { background: #ffedd5; color: #9a3412; }
+.badge-internship { background: #ede9fe; color: #5b21b6; }
+.badge-seasonal { background: #fee2e2; color: #991b1b; }
+.badge-volunteer { background: #f3f4f6; color: #374151; }
+.badge-remote { background: #e0f2fe; color: #075985; }
+.card-location {
+  font-size: 0.813rem;
+  color: var(--gray);
+}
+.card-compensation {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 0.5rem;
+}
+.card-desc {
+  font-size: 0.875rem;
+  color: var(--dark);
+  margin-bottom: 1rem;
+  flex: 1;
+  line-height: 1.5;
+}
+.card-actions {
+  margin-top: auto;
+}
+.card-actions .btn {
+  width: 100%;
+  text-align: center;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+}
+
+/* States */
+.state-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+.state-message h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+.state-message p {
+  color: var(--gray);
+  margin-bottom: 1rem;
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--gray-light);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error-banner {
+  max-width: 1200px;
+  margin: 1rem auto;
+  padding: 0.75rem 1rem;
+  background: #fee2e2;
+  color: #991b1b;
+  border-radius: var(--radius);
+  text-align: center;
+  display: none;
+}
+
+/* Footer */
+.footer {
+  background: var(--green);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.875rem;
+}
+.footer a { color: var(--gold); }
+.footer-links {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>Jobs in the Grove</h1>
+  <p>Local jobs for our community</p>
+</header>
+
+<nav class="cta-bar">
+  <a href="post.html" class="btn btn-gold">Post a Job</a>
+  <a href="resume.html" class="btn btn-outline">Looking for work?</a>
+</nav>
+
+<div class="filter-bar">
+  <select id="filter-category" aria-label="Filter by category">
+    <option value="">All Categories</option>
+    <option value="Agriculture">Agriculture</option>
+    <option value="Construction">Construction</option>
+    <option value="Education">Education</option>
+    <option value="Food Service">Food Service</option>
+    <option value="Government">Government</option>
+    <option value="Healthcare">Healthcare</option>
+    <option value="Manufacturing">Manufacturing</option>
+    <option value="Office">Office</option>
+    <option value="Retail">Retail</option>
+    <option value="Technology">Technology</option>
+    <option value="Transportation">Transportation</option>
+    <option value="Other">Other</option>
+  </select>
+  <select id="filter-type" aria-label="Filter by job type">
+    <option value="">All Job Types</option>
+    <option value="Full-time">Full-time</option>
+    <option value="Part-time">Part-time</option>
+    <option value="Contract">Contract</option>
+    <option value="Internship">Internship</option>
+    <option value="Seasonal">Seasonal</option>
+    <option value="Volunteer">Volunteer</option>
+  </select>
+  <input type="text" id="filter-search" placeholder="Search jobs..." aria-label="Search jobs">
+  <button class="btn-clear" id="btn-clear-filters">Clear filters</button>
+</div>
+
+<div class="error-banner" id="error-banner" role="alert"></div>
+
+<main class="listings" id="listings">
+  <div class="state-message" id="loading-state">
+    <div class="spinner"></div>
+    <p>Loading job listings...</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div>Powered by <a href="https://newsinthegrove.com">News in the Grove</a></div>
+  <div class="footer-links">
+    <a href="post.html">Post a Job</a>
+    <a href="resume.html">Submit Your Resume</a>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var API_URL = 'https://swarm-orchestrator-production.up.railway.app/api/jobs/listings';
+  var listings = [];
+  var listingsEl = document.getElementById('listings');
+  var loadingEl = document.getElementById('loading-state');
+  var errorEl = document.getElementById('error-banner');
+  var filterCategory = document.getElementById('filter-category');
+  var filterType = document.getElementById('filter-type');
+  var filterSearch = document.getElementById('filter-search');
+  var btnClear = document.getElementById('btn-clear-filters');
+
+  var typeBadgeClass = {
+    'Full-time': 'badge-fulltime',
+    'Part-time': 'badge-parttime',
+    'Contract': 'badge-contract',
+    'Internship': 'badge-internship',
+    'Seasonal': 'badge-seasonal',
+    'Volunteer': 'badge-volunteer'
+  };
+
+  function truncate(str, len) {
+    if (!str) return '';
+    return str.length > len ? str.slice(0, len).trimEnd() + '...' : str;
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function renderCard(job) {
+    var isFeatured = job.featured || false;
+    var typeClass = typeBadgeClass[job.job_type] || 'badge-volunteer';
+    var remoteLabel = job.remote_options && job.remote_options !== 'On-site';
+
+    var html = '<article class="card' + (isFeatured ? ' featured' : '') + '">';
+
+    if (isFeatured) {
+      html += '<div class="card-featured-badge">&#9733; Featured</div>';
+    }
+
+    if (job.application_url) {
+      html += '<h2 class="card-title"><a href="' + escapeHtml(job.application_url) + '" target="_blank" rel="noopener">' + escapeHtml(job.title) + '</a></h2>';
+    } else {
+      html += '<h2 class="card-title">' + escapeHtml(job.title) + '</h2>';
+    }
+
+    html += '<div class="card-company">' + escapeHtml(job.company_name) + '</div>';
+
+    html += '<div class="card-meta">';
+    if (job.job_type) {
+      html += '<span class="badge ' + typeClass + '">' + escapeHtml(job.job_type) + '</span>';
+    }
+    if (remoteLabel) {
+      html += '<span class="badge badge-remote">' + escapeHtml(job.remote_options) + '</span>';
+    }
+    if (job.location) {
+      html += '<span class="card-location">' + escapeHtml(job.location) + '</span>';
+    }
+    html += '</div>';
+
+    if (job.compensation) {
+      html += '<div class="card-compensation">' + escapeHtml(job.compensation) + '</div>';
+    }
+
+    html += '<div class="card-desc">' + escapeHtml(truncate(job.description, 150)) + '</div>';
+
+    html += '<div class="card-actions">';
+    if (job.how_to_apply || job.application_url) {
+      var href = job.application_url || '#';
+      html += '<a href="' + escapeHtml(href) + '" class="btn btn-gold"' + (job.application_url ? ' target="_blank" rel="noopener"' : '') + '>';
+      html += job.application_url ? 'Apply' : 'See details';
+      html += '</a>';
+    }
+    html += '</div>';
+
+    html += '</article>';
+    return html;
+  }
+
+  function renderListings() {
+    var cat = filterCategory.value;
+    var type = filterType.value;
+    var search = filterSearch.value.toLowerCase().trim();
+
+    var filtered = listings.filter(function(job) {
+      if (cat && job.category !== cat) return false;
+      if (type && job.job_type !== type) return false;
+      if (search) {
+        var haystack = ((job.title || '') + ' ' + (job.company_name || '') + ' ' + (job.description || '') + ' ' + (job.location || '')).toLowerCase();
+        if (haystack.indexOf(search) === -1) return false;
+      }
+      return true;
+    });
+
+    // Sort: featured first, then by date
+    filtered.sort(function(a, b) {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return 0;
+    });
+
+    if (filtered.length === 0) {
+      listingsEl.innerHTML =
+        '<div class="state-message">' +
+          '<h2>No jobs found</h2>' +
+          '<p>Try adjusting your filters or check back soon for new listings.</p>' +
+          '<a href="post.html" class="btn btn-gold">Post a Job</a>' +
+        '</div>';
+      return;
+    }
+
+    listingsEl.innerHTML = filtered.map(renderCard).join('');
+  }
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.style.display = 'block';
+    loadingEl.remove();
+  }
+
+  function fetchListings() {
+    fetch(API_URL)
+      .then(function(res) {
+        if (!res.ok) throw new Error('Server returned ' + res.status);
+        return res.json();
+      })
+      .then(function(data) {
+        listings = Array.isArray(data) ? data : (data.listings || data.jobs || []);
+        loadingEl.remove();
+        if (listings.length === 0) {
+          listingsEl.innerHTML =
+            '<div class="state-message">' +
+              '<h2>No jobs posted yet</h2>' +
+              '<p>Check back soon! New jobs are added regularly.</p>' +
+              '<a href="post.html" class="btn btn-gold">Post a Job</a>' +
+            '</div>';
+          return;
+        }
+        renderListings();
+      })
+      .catch(function(err) {
+        showError('Unable to load job listings. Please try again later.');
+      });
+  }
+
+  filterCategory.addEventListener('change', renderListings);
+  filterType.addEventListener('change', renderListings);
+  filterSearch.addEventListener('input', renderListings);
+  btnClear.addEventListener('click', function() {
+    filterCategory.value = '';
+    filterType.value = '';
+    filterSearch.value = '';
+    renderListings();
+  });
+
+  fetchListings();
+})();
+</script>
+
+</body>
+</html>

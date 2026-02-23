@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submit Your Profile — Jobs in the Grove</title>
+<meta name="description" content="Submit your profile to connect with local employers in Forest Grove, Banks, and Gales Creek, Oregon.">
+<style>
+:root {
+  --green: #1B4332;
+  --green-light: #2D6A4F;
+  --gold: #D4A853;
+  --gold-hover: #C49B45;
+  --cream: #FDF6E3;
+  --dark: #1a1a1a;
+  --gray: #6b7280;
+  --gray-light: #e5e7eb;
+  --white: #ffffff;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  --red: #dc2626;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--dark);
+  background: var(--cream);
+  line-height: 1.6;
+}
+
+a { color: var(--green); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.header {
+  background: var(--green);
+  color: var(--white);
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+.header h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem; }
+.header p { font-size: 1rem; opacity: 0.85; }
+.header a { color: var(--white); }
+
+.form-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem 3rem;
+}
+
+.form-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--gray-light);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.section-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--gold);
+}
+.section-title:not(:first-child) {
+  margin-top: 2rem;
+}
+
+.field {
+  margin-bottom: 1.25rem;
+}
+.field label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.375rem;
+  color: var(--dark);
+}
+.field label .required {
+  color: var(--red);
+}
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field input[type="date"],
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--gray-light);
+  border-radius: var(--radius);
+  font-size: 0.938rem;
+  font-family: inherit;
+  color: var(--dark);
+  background: var(--white);
+  transition: border-color 0.15s;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 2px rgba(27,67,50,0.15);
+}
+.field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.field .hint {
+  font-size: 0.75rem;
+  color: var(--gray);
+  margin-top: 0.25rem;
+}
+.field .char-count {
+  font-size: 0.75rem;
+  color: var(--gray);
+  text-align: right;
+  margin-top: 0.25rem;
+}
+.field .char-count.over {
+  color: var(--red);
+  font-weight: 600;
+}
+.field.error input,
+.field.error select,
+.field.error textarea {
+  border-color: var(--red);
+}
+.field .error-msg {
+  font-size: 0.75rem;
+  color: var(--red);
+  margin-top: 0.25rem;
+  display: none;
+}
+.field.error .error-msg {
+  display: block;
+}
+
+/* Checkbox groups */
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.375rem;
+}
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+.checkbox-group input[type="checkbox"] {
+  width: auto;
+  accent-color: var(--green);
+}
+
+/* File input */
+.file-input-wrapper {
+  position: relative;
+}
+.file-input-wrapper input[type="file"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px dashed var(--gray-light);
+  border-radius: var(--radius);
+  background: var(--cream);
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+.file-input-wrapper input[type="file"]:focus {
+  border-color: var(--green);
+  outline: none;
+}
+
+.privacy-note {
+  background: var(--cream);
+  border-left: 3px solid var(--green);
+  padding: 0.75rem 1rem;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  color: var(--gray);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, transform 0.1s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.btn-gold {
+  background: var(--gold);
+  color: var(--dark);
+  width: 100%;
+  margin-top: 1rem;
+}
+.btn-gold:hover:not(:disabled) { background: var(--gold-hover); }
+
+.result-message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  text-align: center;
+  font-weight: 600;
+  display: none;
+}
+.result-message.success {
+  background: #d1fae5;
+  color: #065f46;
+  display: block;
+}
+.result-message.error {
+  background: #fee2e2;
+  color: #991b1b;
+  display: block;
+}
+
+.footer {
+  background: var(--green);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.875rem;
+}
+.footer a { color: var(--gold); }
+.footer-links {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1><a href="index.html">Jobs in the Grove</a></h1>
+  <p>Connect with local employers</p>
+</header>
+
+<div class="form-container">
+  <form id="resume-form" class="form-card" novalidate>
+
+    <h2 class="section-title">Personal Information</h2>
+
+    <div class="field" data-required>
+      <label for="full_name">Full Name <span class="required">*</span></label>
+      <input type="text" id="full_name" name="full_name" required>
+      <div class="error-msg">Full name is required.</div>
+    </div>
+
+    <div class="field" data-required>
+      <label for="email">Email <span class="required">*</span></label>
+      <input type="email" id="email" name="email" required>
+      <div class="error-msg">A valid email address is required.</div>
+    </div>
+
+    <div class="field">
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" name="phone">
+    </div>
+
+    <div class="field">
+      <label for="city">City</label>
+      <input type="text" id="city" name="city" placeholder="Forest Grove, OR">
+    </div>
+
+    <h2 class="section-title">Professional Profile</h2>
+
+    <div class="field">
+      <label for="headline">Headline</label>
+      <input type="text" id="headline" name="headline" placeholder="Experienced retail manager or Recent PU graduate">
+    </div>
+
+    <div class="field">
+      <label for="skills_experience">Skills & Experience Summary</label>
+      <textarea id="skills_experience" name="skills_experience" maxlength="2000" placeholder="Tell employers about your experience, skills, and what you bring to the table..."></textarea>
+      <div class="char-count" id="skills-count">0 / 2,000</div>
+    </div>
+
+    <div class="field">
+      <label>Job Types I'm Looking For</label>
+      <div class="checkbox-group" id="job-types-group">
+        <label><input type="checkbox" name="job_types" value="Full-time"> Full-time</label>
+        <label><input type="checkbox" name="job_types" value="Part-time"> Part-time</label>
+        <label><input type="checkbox" name="job_types" value="Contract"> Contract</label>
+        <label><input type="checkbox" name="job_types" value="Internship"> Internship</label>
+        <label><input type="checkbox" name="job_types" value="Seasonal"> Seasonal</label>
+        <label><input type="checkbox" name="job_types" value="Volunteer"> Volunteer</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Categories I'm Interested In</label>
+      <div class="checkbox-group" id="categories-group">
+        <label><input type="checkbox" name="categories" value="Agriculture"> Agriculture</label>
+        <label><input type="checkbox" name="categories" value="Construction"> Construction</label>
+        <label><input type="checkbox" name="categories" value="Education"> Education</label>
+        <label><input type="checkbox" name="categories" value="Food Service"> Food Service</label>
+        <label><input type="checkbox" name="categories" value="Government"> Government</label>
+        <label><input type="checkbox" name="categories" value="Healthcare"> Healthcare</label>
+        <label><input type="checkbox" name="categories" value="Manufacturing"> Manufacturing</label>
+        <label><input type="checkbox" name="categories" value="Office"> Office</label>
+        <label><input type="checkbox" name="categories" value="Retail"> Retail</label>
+        <label><input type="checkbox" name="categories" value="Technology"> Technology</label>
+        <label><input type="checkbox" name="categories" value="Transportation"> Transportation</label>
+        <label><input type="checkbox" name="categories" value="Other"> Other</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="resume_file">Resume (PDF only, max 5MB)</label>
+      <div class="file-input-wrapper">
+        <input type="file" id="resume_file" name="resume_file" accept=".pdf,application/pdf">
+      </div>
+      <div class="error-msg" id="file-error">Please upload a PDF file under 5MB.</div>
+    </div>
+
+    <h2 class="section-title">Preferences</h2>
+
+    <div class="field">
+      <label for="available_starting">Available Starting</label>
+      <input type="date" id="available_starting" name="available_starting">
+    </div>
+
+    <div class="field">
+      <label for="commute_range">Commute Range</label>
+      <select id="commute_range" name="commute_range">
+        <option value="">Select...</option>
+        <option value="Within 15 miles">Within 15 miles</option>
+        <option value="Within 30 miles">Within 30 miles</option>
+        <option value="Remote only">Remote only</option>
+      </select>
+    </div>
+
+    <div class="privacy-note">
+      Your information will only be shared with verified local employers.
+    </div>
+
+    <button type="submit" class="btn btn-gold" id="submit-btn">Submit Your Profile</button>
+
+    <div class="result-message" id="result-message"></div>
+  </form>
+</div>
+
+<footer class="footer">
+  <div>Powered by <a href="https://newsinthegrove.com">News in the Grove</a></div>
+  <div class="footer-links">
+    <a href="index.html">View Job Listings</a>
+    <a href="post.html">Post a Job</a>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var API_URL = 'https://swarm-orchestrator-production.up.railway.app/api/jobs/resume';
+  var form = document.getElementById('resume-form');
+  var submitBtn = document.getElementById('submit-btn');
+  var resultEl = document.getElementById('result-message');
+  var skillsArea = document.getElementById('skills_experience');
+  var skillsCount = document.getElementById('skills-count');
+  var fileInput = document.getElementById('resume_file');
+  var fileError = document.getElementById('file-error');
+
+  // Char counter
+  skillsArea.addEventListener('input', function() {
+    var len = skillsArea.value.length;
+    skillsCount.textContent = len.toLocaleString() + ' / 2,000';
+    skillsCount.classList.toggle('over', len > 2000);
+  });
+
+  // File validation
+  function validateFile() {
+    var file = fileInput.files[0];
+    if (!file) return true; // optional
+    var maxSize = 5 * 1024 * 1024;
+    if (file.type !== 'application/pdf' || file.size > maxSize) {
+      fileInput.closest('.field').classList.add('error');
+      return false;
+    }
+    fileInput.closest('.field').classList.remove('error');
+    return true;
+  }
+
+  fileInput.addEventListener('change', validateFile);
+
+  function validateForm() {
+    var valid = true;
+    var requiredFields = form.querySelectorAll('[data-required]');
+    requiredFields.forEach(function(field) {
+      var input = field.querySelector('input, select, textarea');
+      var val = input.value.trim();
+      if (!val) {
+        field.classList.add('error');
+        valid = false;
+      } else {
+        field.classList.remove('error');
+      }
+    });
+
+    // Email format
+    var emailField = document.getElementById('email');
+    var emailWrapper = emailField.closest('.field');
+    if (emailField.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) {
+      emailWrapper.classList.add('error');
+      valid = false;
+    }
+
+    if (!validateFile()) valid = false;
+
+    return valid;
+  }
+
+  function readFileAsBase64(file) {
+    return new Promise(function(resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function() {
+        var base64 = reader.result.split(',')[1];
+        resolve({
+          data: base64,
+          filename: file.name,
+          content_type: 'application/pdf'
+        });
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function getCheckedValues(name) {
+    var checked = [];
+    form.querySelectorAll('input[name="' + name + '"]:checked').forEach(function(cb) {
+      checked.push(cb.value);
+    });
+    return checked;
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    resultEl.style.display = 'none';
+    resultEl.className = 'result-message';
+
+    if (!validateForm()) {
+      var firstError = form.querySelector('.field.error');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    var data = {
+      full_name: document.getElementById('full_name').value.trim(),
+      email: document.getElementById('email').value.trim()
+    };
+
+    // Optional text fields
+    var optionalFields = ['phone', 'city', 'headline', 'skills_experience', 'available_starting', 'commute_range'];
+    optionalFields.forEach(function(name) {
+      var el = document.getElementById(name);
+      if (el && el.value.trim()) data[name] = el.value.trim();
+    });
+
+    // Checkbox groups
+    var jobTypes = getCheckedValues('job_types');
+    if (jobTypes.length > 0) data.job_types = jobTypes;
+
+    var categories = getCheckedValues('categories');
+    if (categories.length > 0) data.categories = categories;
+
+    // File handling
+    var filePromise;
+    var file = fileInput.files[0];
+    if (file) {
+      filePromise = readFileAsBase64(file);
+    } else {
+      filePromise = Promise.resolve(null);
+    }
+
+    filePromise
+      .then(function(fileData) {
+        if (fileData) data.resume = fileData;
+
+        return fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+      })
+      .then(function(res) {
+        return res.json().then(function(body) {
+          return { ok: res.ok, body: body };
+        });
+      })
+      .then(function(result) {
+        if (result.ok) {
+          resultEl.textContent = 'Your profile has been submitted! We will share it with local employers looking for candidates like you.';
+          resultEl.className = 'result-message success';
+          form.reset();
+          skillsCount.textContent = '0 / 2,000';
+        } else {
+          resultEl.textContent = result.body.error || result.body.message || 'Something went wrong. Please try again.';
+          resultEl.className = 'result-message error';
+        }
+      })
+      .catch(function() {
+        resultEl.textContent = 'Unable to submit. Please check your connection and try again.';
+        resultEl.className = 'result-message error';
+      })
+      .finally(function() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Your Profile';
+      });
+  });
+
+  // Clear error state on input
+  form.addEventListener('input', function(e) {
+    var field = e.target.closest('.field');
+    if (field) field.classList.remove('error');
+  });
+})();
+</script>
+
+</body>
+</html>
