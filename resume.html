@@ -42,6 +42,19 @@ a:hover { text-decoration: underline; }
 .header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.35rem; letter-spacing: -0.01em; }
 .header p { font-size: 1.05rem; opacity: 0.9; }
 .header a { color: var(--white); }
+.beta-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  vertical-align: super;
+  margin-left: 0.35rem;
+}
 
 .form-container {
   max-width: 700px;
@@ -252,7 +265,7 @@ a:hover { text-decoration: underline; }
 <body>
 
 <header class="header">
-  <h1><a href="index.html">Jobs in the Grove</a></h1>
+  <h1><a href="index.html">Jobs in the Grove <span class="beta-badge">Beta</span></a></h1>
   <p>Put yourself out there &mdash; let local employers find you.</p>
 </header>
 
