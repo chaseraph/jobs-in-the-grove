@@ -18,7 +18,13 @@
   --white: #ffffff;
   --radius: 12px;
   --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md: 0 6px 16px rgba(0,0,0,0.1);
   --red: #dc2626;
+  --blue: #1e40af;
+  --blue-light: #dbeafe;
+  --gold-light: #fef3c7;
+  --green-success: #d1fae5;
+  --green-success-text: #065f46;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -170,6 +176,310 @@ a:hover { text-decoration: underline; }
   z-index: -1;
 }
 
+/* Member Check Section */
+.member-check {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--gray-light);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+}
+.member-check h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 0.5rem;
+}
+.member-check p {
+  font-size: 0.875rem;
+  color: var(--gray);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+.member-check-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.member-check-row input[type="email"] {
+  flex: 1;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--gray-light);
+  border-radius: var(--radius);
+  font-size: 0.938rem;
+  font-family: inherit;
+  color: var(--dark);
+  background: var(--white);
+  transition: border-color 0.15s;
+}
+.member-check-row input[type="email"]:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 2px rgba(27,67,50,0.15);
+}
+.btn-check {
+  padding: 0.625rem 1.25rem;
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.btn-check:hover:not(:disabled) { background: var(--green-light); }
+.btn-check:disabled { opacity: 0.6; cursor: not-allowed; }
+.member-result {
+  margin-top: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: none;
+}
+.member-result.verified {
+  background: var(--green-success);
+  color: var(--green-success-text);
+  display: block;
+}
+.member-result.not-found {
+  background: var(--blue-light);
+  color: var(--blue);
+  display: block;
+}
+.member-result.check-error {
+  background: #fee2e2;
+  color: #991b1b;
+  display: block;
+}
+
+/* Pricing Cards */
+.pricing-section {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--gray-light);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+}
+.pricing-section h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 0.25rem;
+}
+.pricing-section > p {
+  font-size: 0.875rem;
+  color: var(--gray);
+  margin-bottom: 1.25rem;
+}
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 640px) {
+  .pricing-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pricing-card {
+  position: relative;
+  border: 2px solid var(--gray-light);
+  border-radius: var(--radius);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+  background: var(--white);
+}
+.pricing-card:hover:not(.disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.pricing-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.pricing-card.selected {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.pricing-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Free tier card — green theme */
+.pricing-card.tier-free {
+  border-color: var(--green-light);
+  background: linear-gradient(180deg, #ecfdf5 0%, var(--white) 100%);
+}
+.pricing-card.tier-free.selected {
+  border-color: var(--green);
+  box-shadow: 0 0 0 2px rgba(27,67,50,0.2), var(--shadow-md);
+}
+.pricing-card.tier-free.disabled {
+  border-color: var(--gray-light);
+  background: var(--white);
+}
+
+/* Standard tier card — blue theme */
+.pricing-card.tier-standard {
+  border-color: #93c5fd;
+  background: linear-gradient(180deg, #eff6ff 0%, var(--white) 100%);
+}
+.pricing-card.tier-standard.selected {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px rgba(30,64,175,0.2), var(--shadow-md);
+}
+
+/* Featured tier card — gold theme */
+.pricing-card.tier-featured {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, #fefce8 0%, var(--white) 100%);
+}
+.pricing-card.tier-featured.selected {
+  border-color: var(--gold-hover);
+  box-shadow: 0 0 0 2px rgba(212,168,83,0.3), var(--shadow-md);
+}
+
+.pricing-card .tier-badge {
+  display: inline-block;
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.tier-free .tier-badge {
+  background: var(--green);
+  color: var(--white);
+}
+.tier-standard .tier-badge {
+  background: var(--blue);
+  color: var(--white);
+}
+.tier-featured .tier-badge {
+  background: var(--gold);
+  color: var(--dark);
+}
+
+.pricing-card .tier-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.25rem;
+}
+.pricing-card .tier-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+}
+.pricing-card .tier-price .price-note {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--gray);
+}
+.pricing-card .tier-features {
+  list-style: none;
+  font-size: 0.8rem;
+  color: var(--gray);
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}
+.pricing-card .tier-features li {
+  padding: 0.2rem 0;
+  padding-left: 1.1rem;
+  position: relative;
+}
+.pricing-card .tier-features li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+.tier-free .tier-features li::before { color: var(--green); }
+.tier-standard .tier-features li::before { color: var(--blue); }
+.tier-featured .tier-features li::before { color: var(--gold-hover); }
+
+.pricing-card .tier-lock {
+  font-size: 0.75rem;
+  color: var(--gray);
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+.tier-star {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.pricing-error {
+  font-size: 0.75rem;
+  color: var(--red);
+  margin-top: 0.75rem;
+  display: none;
+}
+.pricing-error.visible {
+  display: block;
+}
+
+/* Payment status banners */
+.payment-banner {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.payment-banner .banner-card {
+  border-radius: var(--radius);
+  padding: 2rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.banner-card.success-banner {
+  background: var(--green-success);
+  border: 1px solid #6ee7b7;
+}
+.banner-card.success-banner h2 {
+  color: var(--green-success-text);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.banner-card.success-banner p {
+  color: var(--green-success-text);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+.banner-card.cancelled-banner {
+  background: var(--gold-light);
+  border: 1px solid var(--gold);
+}
+.banner-card.cancelled-banner h2 {
+  color: var(--dark);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.banner-card.cancelled-banner p {
+  color: var(--gray);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+.banner-card .verifying-text {
+  font-size: 0.875rem;
+  color: var(--gray);
+}
+
 .btn {
   display: inline-block;
   padding: 0.75rem 2rem;
@@ -190,6 +500,13 @@ a:hover { text-decoration: underline; }
   margin-top: 1rem;
 }
 .btn-gold:hover:not(:disabled) { background: var(--gold-hover); }
+.btn-outline {
+  background: var(--white);
+  color: var(--green);
+  border: 2px solid var(--green);
+  padding: 0.625rem 1.5rem;
+}
+.btn-outline:hover { background: var(--green); color: var(--white); }
 
 .result-message {
   margin-top: 1.5rem;
@@ -234,136 +551,220 @@ a:hover { text-decoration: underline; }
   <p>Hiring? Let your neighbors know.</p>
 </header>
 
-<div class="form-container">
-  <form id="job-form" class="form-card" novalidate>
+<!-- Payment Return Banners (shown/hidden by JS) -->
+<div class="payment-banner" id="payment-success-banner" style="display:none;">
+  <div class="banner-card success-banner">
+    <h2>Payment Successful</h2>
+    <p id="success-banner-text" class="verifying-text">Verifying your payment...</p>
+    <a href="index.html" class="btn btn-outline" id="success-browse-btn" style="display:none;">Browse Jobs</a>
+  </div>
+</div>
 
-    <p class="form-intro">Fill out the basics below and we'll get your listing in front of local job seekers. Free to post, reviewed within a day or two.</p>
+<div class="payment-banner" id="payment-cancelled-banner" style="display:none;">
+  <div class="banner-card cancelled-banner">
+    <h2>Payment Cancelled</h2>
+    <p>No worries — your listing wasn't submitted. You can try again whenever you're ready.</p>
+    <button type="button" class="btn btn-outline" id="try-again-btn">Try Again</button>
+  </div>
+</div>
 
-    <h2 class="section-title">About Your Business</h2>
+<!-- Main Content (hidden when payment banners are active) -->
+<div id="main-content">
 
-    <div class="field" data-required>
-      <label for="company_name">Company Name <span class="required">*</span></label>
-      <input type="text" id="company_name" name="company_name" required>
-      <div class="error-msg">Company name is required.</div>
+  <div class="form-container">
+
+    <!-- Member Check -->
+    <div class="member-check" id="member-check-section">
+      <h2>Business Club Members Post Free</h2>
+      <p>News in the Grove Business Club members get unlimited free job listings. Enter your membership email below to unlock the free tier.</p>
+      <div class="member-check-row">
+        <input type="email" id="member-email" placeholder="you@business.com" autocomplete="email">
+        <button type="button" class="btn-check" id="member-check-btn">Check Membership</button>
+      </div>
+      <div class="member-result" id="member-result"></div>
     </div>
 
-    <div class="field">
-      <label for="contact_name">Contact Name</label>
-      <input type="text" id="contact_name" name="contact_name">
+    <!-- Pricing -->
+    <div class="pricing-section" id="pricing-section">
+      <h2>Choose Your Listing</h2>
+      <p>All listings run for 30 days and are reviewed before going live.</p>
+      <div class="pricing-cards">
+
+        <label class="pricing-card tier-free disabled" id="card-free">
+          <input type="radio" name="listing_type" value="Free" disabled>
+          <div class="tier-badge">Member</div>
+          <div class="tier-name">Free</div>
+          <div class="tier-price">$0<span class="price-note">Business Club members</span></div>
+          <ul class="tier-features">
+            <li>30-day listing</li>
+            <li>Full job details</li>
+            <li>Included in job board</li>
+          </ul>
+          <div class="tier-lock" id="free-lock-text">Verify membership to unlock</div>
+        </label>
+
+        <label class="pricing-card tier-standard" id="card-standard">
+          <input type="radio" name="listing_type" value="Standard">
+          <div class="tier-badge">Standard</div>
+          <div class="tier-name">Standard</div>
+          <div class="tier-price">$25<span class="price-note">one-time</span></div>
+          <ul class="tier-features">
+            <li>30-day listing</li>
+            <li>Full job details</li>
+            <li>Included in job board</li>
+          </ul>
+        </label>
+
+        <label class="pricing-card tier-featured" id="card-featured">
+          <input type="radio" name="listing_type" value="Featured">
+          <div class="tier-badge">Featured</div>
+          <div class="tier-star">&#9733;</div>
+          <div class="tier-name">Featured</div>
+          <div class="tier-price">$50<span class="price-note">one-time</span></div>
+          <ul class="tier-features">
+            <li>30-day listing</li>
+            <li>Pinned to top of board</li>
+            <li>Newsletter callout</li>
+            <li>Maximum visibility</li>
+          </ul>
+        </label>
+
+      </div>
+      <div class="pricing-error" id="pricing-error">Please select a listing tier before submitting.</div>
     </div>
 
-    <div class="field" data-required>
-      <label for="contact_email">Contact Email <span class="required">*</span></label>
-      <input type="email" id="contact_email" name="contact_email" required>
-      <div class="error-msg">A valid email address is required.</div>
-    </div>
+    <!-- Job Form -->
+    <form id="job-form" class="form-card" novalidate>
 
-    <div class="field">
-      <label for="contact_phone">Contact Phone</label>
-      <input type="tel" id="contact_phone" name="contact_phone">
-    </div>
+      <p class="form-intro">Fill out the basics below and we'll get your listing in front of local job seekers. Business Club members post free. Standard listings are $25 and Featured listings are $50 — both run for 30 days.</p>
 
-    <div class="field">
-      <label for="company_website">Company Website</label>
-      <input type="url" id="company_website" name="company_website" placeholder="https://">
-    </div>
+      <h2 class="section-title">About Your Business</h2>
 
-    <h2 class="section-title">Tell Us About the Job</h2>
+      <div class="field" data-required>
+        <label for="company_name">Company Name <span class="required">*</span></label>
+        <input type="text" id="company_name" name="company_name" required>
+        <div class="error-msg">Company name is required.</div>
+      </div>
 
-    <div class="field" data-required>
-      <label for="title">Job Title <span class="required">*</span></label>
-      <input type="text" id="title" name="title" required>
-      <div class="error-msg">Job title is required.</div>
-    </div>
+      <div class="field">
+        <label for="contact_name">Contact Name</label>
+        <input type="text" id="contact_name" name="contact_name">
+      </div>
 
-    <div class="field" data-required>
-      <label for="job_type">Job Type <span class="required">*</span></label>
-      <select id="job_type" name="job_type" required>
-        <option value="">Select type...</option>
-        <option value="Full-time">Full-time</option>
-        <option value="Part-time">Part-time</option>
-        <option value="Contract">Contract</option>
-        <option value="Internship">Internship</option>
-        <option value="Seasonal">Seasonal</option>
-        <option value="Volunteer">Volunteer</option>
-      </select>
-      <div class="error-msg">Job type is required.</div>
-    </div>
+      <div class="field" data-required>
+        <label for="contact_email">Contact Email <span class="required">*</span></label>
+        <input type="email" id="contact_email" name="contact_email" required>
+        <div class="error-msg">A valid email address is required.</div>
+      </div>
 
-    <div class="field" data-required>
-      <label for="category">Category <span class="required">*</span></label>
-      <select id="category" name="category" required>
-        <option value="">Select category...</option>
-        <option value="Agriculture">Agriculture</option>
-        <option value="Construction">Construction</option>
-        <option value="Education">Education</option>
-        <option value="Food Service">Food Service</option>
-        <option value="Government">Government</option>
-        <option value="Healthcare">Healthcare</option>
-        <option value="Manufacturing">Manufacturing</option>
-        <option value="Office">Office</option>
-        <option value="Retail">Retail</option>
-        <option value="Technology">Technology</option>
-        <option value="Transportation">Transportation</option>
-        <option value="Other">Other</option>
-      </select>
-      <div class="error-msg">Category is required.</div>
-    </div>
+      <div class="field">
+        <label for="contact_phone">Contact Phone</label>
+        <input type="tel" id="contact_phone" name="contact_phone">
+      </div>
 
-    <div class="field" data-required>
-      <label for="location">Location <span class="required">*</span></label>
-      <input type="text" id="location" name="location" placeholder="Forest Grove, OR" required>
-      <div class="error-msg">Location is required.</div>
-    </div>
+      <div class="field">
+        <label for="company_website">Company Website</label>
+        <input type="url" id="company_website" name="company_website" placeholder="https://">
+      </div>
 
-    <div class="field">
-      <label for="remote_options">Remote Options</label>
-      <select id="remote_options" name="remote_options">
-        <option value="On-site">On-site</option>
-        <option value="Hybrid">Hybrid</option>
-        <option value="Remote">Remote</option>
-      </select>
-    </div>
+      <h2 class="section-title">Tell Us About the Job</h2>
 
-    <div class="field">
-      <label for="compensation">Compensation</label>
-      <input type="text" id="compensation" name="compensation" placeholder="$15-20/hr or $45,000-55,000/year">
-    </div>
+      <div class="field" data-required>
+        <label for="title">Job Title <span class="required">*</span></label>
+        <input type="text" id="title" name="title" required>
+        <div class="error-msg">Job title is required.</div>
+      </div>
 
-    <div class="field" data-required>
-      <label for="description">Description <span class="required">*</span></label>
-      <textarea id="description" name="description" maxlength="2000" required></textarea>
-      <div class="char-count" id="desc-count">0 / 2,000</div>
-      <div class="error-msg">Description is required.</div>
-    </div>
+      <div class="field" data-required>
+        <label for="job_type">Job Type <span class="required">*</span></label>
+        <select id="job_type" name="job_type" required>
+          <option value="">Select type...</option>
+          <option value="Full-time">Full-time</option>
+          <option value="Part-time">Part-time</option>
+          <option value="Contract">Contract</option>
+          <option value="Internship">Internship</option>
+          <option value="Seasonal">Seasonal</option>
+          <option value="Volunteer">Volunteer</option>
+        </select>
+        <div class="error-msg">Job type is required.</div>
+      </div>
 
-    <div class="field">
-      <label for="how_to_apply">How to Apply</label>
-      <textarea id="how_to_apply" name="how_to_apply" rows="3" placeholder="Email resume to hiring@example.com..."></textarea>
-    </div>
+      <div class="field" data-required>
+        <label for="category">Category <span class="required">*</span></label>
+        <select id="category" name="category" required>
+          <option value="">Select category...</option>
+          <option value="Agriculture">Agriculture</option>
+          <option value="Construction">Construction</option>
+          <option value="Education">Education</option>
+          <option value="Food Service">Food Service</option>
+          <option value="Government">Government</option>
+          <option value="Healthcare">Healthcare</option>
+          <option value="Manufacturing">Manufacturing</option>
+          <option value="Office">Office</option>
+          <option value="Retail">Retail</option>
+          <option value="Technology">Technology</option>
+          <option value="Transportation">Transportation</option>
+          <option value="Other">Other</option>
+        </select>
+        <div class="error-msg">Category is required.</div>
+      </div>
 
-    <div class="field">
-      <label for="application_url">Application URL</label>
-      <input type="url" id="application_url" name="application_url" placeholder="https://">
-    </div>
+      <div class="field" data-required>
+        <label for="location">Location <span class="required">*</span></label>
+        <input type="text" id="location" name="location" placeholder="Forest Grove, OR" required>
+        <div class="error-msg">Location is required.</div>
+      </div>
 
-    <div class="field">
-      <label for="application_deadline">Application Deadline</label>
-      <input type="date" id="application_deadline" name="application_deadline">
-    </div>
+      <div class="field">
+        <label for="remote_options">Remote Options</label>
+        <select id="remote_options" name="remote_options">
+          <option value="On-site">On-site</option>
+          <option value="Hybrid">Hybrid</option>
+          <option value="Remote">Remote</option>
+        </select>
+      </div>
 
-    <!-- Honeypot -->
-    <div class="ohnohoney">
-      <label for="website">Website</label>
-      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-    </div>
+      <div class="field">
+        <label for="compensation">Compensation</label>
+        <input type="text" id="compensation" name="compensation" placeholder="$15-20/hr or $45,000-55,000/year">
+      </div>
 
-    <input type="hidden" name="outlet" value="NitG">
+      <div class="field" data-required>
+        <label for="description">Description <span class="required">*</span></label>
+        <textarea id="description" name="description" maxlength="2000" required></textarea>
+        <div class="char-count" id="desc-count">0 / 2,000</div>
+        <div class="error-msg">Description is required.</div>
+      </div>
 
-    <button type="submit" class="btn btn-gold" id="submit-btn">Get the Word Out</button>
+      <div class="field">
+        <label for="how_to_apply">How to Apply</label>
+        <textarea id="how_to_apply" name="how_to_apply" rows="3" placeholder="Email resume to hiring@example.com..."></textarea>
+      </div>
 
-    <div class="result-message" id="result-message"></div>
-  </form>
+      <div class="field">
+        <label for="application_url">Application URL</label>
+        <input type="url" id="application_url" name="application_url" placeholder="https://">
+      </div>
+
+      <div class="field">
+        <label for="application_deadline">Application Deadline</label>
+        <input type="date" id="application_deadline" name="application_deadline">
+      </div>
+
+      <!-- Honeypot -->
+      <div class="ohnohoney">
+        <label for="website">Website</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <input type="hidden" name="outlet" value="NitG">
+
+      <button type="submit" class="btn btn-gold" id="submit-btn">Get the Word Out</button>
+
+      <div class="result-message" id="result-message"></div>
+    </form>
+  </div>
+
 </div>
 
 <footer class="footer">
@@ -376,14 +777,157 @@ a:hover { text-decoration: underline; }
 
 <script>
 (function() {
-  var API_URL = 'https://swarm-orchestrator-production.up.railway.app/api/jobs/submit';
+  var API_BASE = 'https://swarm-orchestrator-production.up.railway.app';
   var form = document.getElementById('job-form');
   var submitBtn = document.getElementById('submit-btn');
   var resultEl = document.getElementById('result-message');
   var descArea = document.getElementById('description');
   var descCount = document.getElementById('desc-count');
+  var mainContent = document.getElementById('main-content');
 
-  // Char counter for description
+  // Member check elements
+  var memberEmailInput = document.getElementById('member-email');
+  var memberCheckBtn = document.getElementById('member-check-btn');
+  var memberResultEl = document.getElementById('member-result');
+
+  // Pricing elements
+  var cardFree = document.getElementById('card-free');
+  var cardStandard = document.getElementById('card-standard');
+  var cardFeatured = document.getElementById('card-featured');
+  var pricingError = document.getElementById('pricing-error');
+  var freeLockText = document.getElementById('free-lock-text');
+  var allCards = [cardFree, cardStandard, cardFeatured];
+
+  // Payment banners
+  var successBanner = document.getElementById('payment-success-banner');
+  var cancelledBanner = document.getElementById('payment-cancelled-banner');
+  var successBannerText = document.getElementById('success-banner-text');
+  var successBrowseBtn = document.getElementById('success-browse-btn');
+  var tryAgainBtn = document.getElementById('try-again-btn');
+
+  // State
+  var verifiedMemberEmail = null;
+
+  // --- Payment Return Handling ---
+  var urlParams = new URLSearchParams(window.location.search);
+  var paymentStatus = urlParams.get('payment');
+  var sessionId = urlParams.get('session_id');
+
+  if (paymentStatus === 'success' && sessionId) {
+    mainContent.style.display = 'none';
+    successBanner.style.display = 'block';
+
+    fetch(API_BASE + '/api/jobs/checkout/verify?session_id=' + encodeURIComponent(sessionId))
+      .then(function(res) {
+        return res.json().then(function(body) {
+          return { ok: res.ok, body: body };
+        });
+      })
+      .then(function(result) {
+        if (result.ok) {
+          successBannerText.textContent = 'Your listing has been submitted and is in for review. It\u2019ll go live on the board once we give it a look.';
+          successBrowseBtn.style.display = 'inline-block';
+        } else {
+          successBannerText.textContent = result.body.error || 'We received your payment but could not verify the session. Please contact us if your listing does not appear.';
+          successBrowseBtn.style.display = 'inline-block';
+        }
+      })
+      .catch(function() {
+        successBannerText.textContent = 'We received your payment but could not verify it right now. Your listing should appear shortly. Contact us if it doesn\u2019t.';
+        successBrowseBtn.style.display = 'inline-block';
+      });
+  } else if (paymentStatus === 'cancelled') {
+    mainContent.style.display = 'none';
+    cancelledBanner.style.display = 'block';
+  }
+
+  tryAgainBtn.addEventListener('click', function() {
+    window.location.href = window.location.pathname;
+  });
+
+  // --- Member Check ---
+  memberCheckBtn.addEventListener('click', function() {
+    var email = memberEmailInput.value.trim();
+    memberResultEl.style.display = 'none';
+    memberResultEl.className = 'member-result';
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      memberResultEl.textContent = 'Please enter a valid email address.';
+      memberResultEl.className = 'member-result check-error';
+      return;
+    }
+
+    memberCheckBtn.disabled = true;
+    memberCheckBtn.textContent = 'Checking...';
+
+    fetch(API_BASE + '/api/jobs/member-verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    })
+    .then(function(res) {
+      return res.json().then(function(body) {
+        return { ok: res.ok, body: body };
+      });
+    })
+    .then(function(result) {
+      if (result.ok && result.body.is_member) {
+        verifiedMemberEmail = email;
+        memberResultEl.textContent = 'Verified! You\u2019re a Business Club member. The free tier is now available.';
+        memberResultEl.className = 'member-result verified';
+        unlockFreeTier();
+      } else {
+        verifiedMemberEmail = null;
+        memberResultEl.textContent = 'We didn\u2019t find a Business Club membership with that email. You can still post with a Standard or Featured listing.';
+        memberResultEl.className = 'member-result not-found';
+      }
+    })
+    .catch(function() {
+      verifiedMemberEmail = null;
+      memberResultEl.textContent = 'Unable to check membership. Please try again or choose a paid listing.';
+      memberResultEl.className = 'member-result check-error';
+    })
+    .finally(function() {
+      memberCheckBtn.disabled = false;
+      memberCheckBtn.textContent = 'Check Membership';
+    });
+  });
+
+  // Allow Enter key in member email field
+  memberEmailInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      memberCheckBtn.click();
+    }
+  });
+
+  // --- Pricing Card Selection ---
+  function unlockFreeTier() {
+    cardFree.classList.remove('disabled');
+    cardFree.querySelector('input[type="radio"]').disabled = false;
+    freeLockText.style.display = 'none';
+  }
+
+  function selectCard(card) {
+    if (card.classList.contains('disabled')) return;
+    allCards.forEach(function(c) { c.classList.remove('selected'); });
+    card.classList.add('selected');
+    card.querySelector('input[type="radio"]').checked = true;
+    pricingError.classList.remove('visible');
+  }
+
+  allCards.forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      // Prevent double-fire from label > input
+      if (e.target.tagName === 'INPUT') return;
+      selectCard(card);
+    });
+    card.querySelector('input[type="radio"]').addEventListener('change', function() {
+      selectCard(card);
+    });
+  });
+
+  // --- Form Validation ---
   descArea.addEventListener('input', function() {
     var len = descArea.value.length;
     descCount.textContent = len.toLocaleString() + ' / 2,000';
@@ -404,7 +948,6 @@ a:hover { text-decoration: underline; }
       }
     });
 
-    // Validate email format
     var emailField = document.getElementById('contact_email');
     var emailWrapper = emailField.closest('.field');
     if (emailField.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) {
@@ -415,6 +958,23 @@ a:hover { text-decoration: underline; }
     return valid;
   }
 
+  function getSelectedTier() {
+    var selected = document.querySelector('input[name="listing_type"]:checked');
+    return selected ? selected.value : null;
+  }
+
+  function gatherFormData() {
+    var formData = new FormData(form);
+    var data = {};
+    formData.forEach(function(value, key) {
+      if (key === 'website') return;
+      if (key === 'listing_type') return;
+      if (value.trim()) data[key] = value.trim();
+    });
+    return data;
+  }
+
+  // --- Submit ---
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     resultEl.style.display = 'none';
@@ -423,6 +983,14 @@ a:hover { text-decoration: underline; }
     // Honeypot check
     if (document.getElementById('website').value) return;
 
+    // Tier check
+    var tier = getSelectedTier();
+    if (!tier) {
+      pricingError.classList.add('visible');
+      document.getElementById('pricing-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
     if (!validateForm()) {
       var firstError = form.querySelector('.field.error');
       if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -430,45 +998,84 @@ a:hover { text-decoration: underline; }
     }
 
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
 
-    var formData = new FormData(form);
-    var data = {};
-    formData.forEach(function(value, key) {
-      if (key === 'website') return; // skip honeypot
-      if (value.trim()) data[key] = value.trim();
-    });
+    var data = gatherFormData();
+    data.listing_type = tier;
 
-    fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    .then(function(res) {
-      return res.json().then(function(body) {
-        return { ok: res.ok, body: body };
-      });
-    })
-    .then(function(result) {
-      if (result.ok) {
-        resultEl.textContent = 'Nice! Your listing is in for review. It\u2019ll go live on the board once we give it a look.';
-        resultEl.className = 'result-message success';
-        form.reset();
-        descCount.textContent = '0 / 2,000';
-      } else {
-        resultEl.textContent = result.body.error || result.body.message || 'Something went wrong. Please try again.';
+    if (tier === 'Free') {
+      // Free tier — direct submit with member email
+      data.member_email = verifiedMemberEmail;
+      submitBtn.textContent = 'Submitting...';
+
+      fetch(API_BASE + '/api/jobs/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function(res) {
+        return res.json().then(function(body) {
+          return { ok: res.ok, body: body };
+        });
+      })
+      .then(function(result) {
+        if (result.ok) {
+          resultEl.textContent = 'Nice! Your listing is in for review. It\u2019ll go live on the board once we give it a look.';
+          resultEl.className = 'result-message success';
+          form.reset();
+          descCount.textContent = '0 / 2,000';
+          resetPricingSelection();
+        } else {
+          resultEl.textContent = result.body.error || result.body.message || 'Something went wrong. Please try again.';
+          resultEl.className = 'result-message error';
+        }
+      })
+      .catch(function() {
+        resultEl.textContent = 'Unable to submit. Please check your connection and try again.';
         resultEl.className = 'result-message error';
-      }
-    })
-    .catch(function() {
-      resultEl.textContent = 'Unable to submit. Please check your connection and try again.';
-      resultEl.className = 'result-message error';
-    })
-    .finally(function() {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Get the Word Out';
-    });
+      })
+      .finally(function() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get the Word Out';
+      });
+
+    } else {
+      // Paid tier — redirect to checkout
+      submitBtn.textContent = 'Redirecting to checkout...';
+
+      fetch(API_BASE + '/api/jobs/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function(res) {
+        return res.json().then(function(body) {
+          return { ok: res.ok, body: body };
+        });
+      })
+      .then(function(result) {
+        if (result.ok && result.body.checkout_url) {
+          window.location.href = result.body.checkout_url;
+        } else {
+          resultEl.textContent = result.body.error || result.body.message || 'Unable to start checkout. Please try again.';
+          resultEl.className = 'result-message error';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Get the Word Out';
+        }
+      })
+      .catch(function() {
+        resultEl.textContent = 'Unable to connect to checkout. Please check your connection and try again.';
+        resultEl.className = 'result-message error';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get the Word Out';
+      });
+    }
   });
+
+  function resetPricingSelection() {
+    allCards.forEach(function(c) { c.classList.remove('selected'); });
+    var radios = document.querySelectorAll('input[name="listing_type"]');
+    radios.forEach(function(r) { r.checked = false; });
+  }
 
   // Clear error state on input
   form.addEventListener('input', function(e) {
