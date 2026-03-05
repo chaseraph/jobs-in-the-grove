@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="shortcut icon" href="favicon.ico">
 <title>Post a Job — Jobs in the Grove</title>
 <meta name="description" content="Post a job listing to reach local job seekers in Forest Grove, Banks, and Gales Creek, Oregon.">
 <style>
@@ -232,6 +236,14 @@ a:hover { text-decoration: underline; }
 }
 .btn-check:hover:not(:disabled) { background: var(--green-light); }
 .btn-check:disabled { opacity: 0.6; cursor: not-allowed; }
+@media (max-width: 480px) {
+  .member-check-row {
+    flex-direction: column;
+  }
+  .btn-check {
+    width: 100%;
+  }
+}
 .member-result {
   margin-top: 0.75rem;
   padding: 0.625rem 0.75rem;
