@@ -289,15 +289,48 @@ a:hover { color: var(--accent); text-decoration-color: var(--accent); }
   transition: border-color 0.15s, box-shadow 0.2s, transform 0.1s, background 0.15s;
   display: flex; flex-direction: column;
 }
-.pkg:hover:not(.disabled) { transform: translateY(-2px); box-shadow: var(--shadow-card); border-color: var(--ink); }
+.pkg:hover:not(.disabled):not(.selected) { transform: translateY(-2px); box-shadow: var(--shadow-card); border-color: var(--ink); }
 .pkg.disabled { opacity: 0.55; cursor: not-allowed; }
-.pkg.selected { box-shadow: var(--shadow-card); transform: translateY(-2px); }
+.pkg.selected { transform: translateY(-4px); }
+.pkg.selected::after {
+  content: "\2713";
+  position: absolute;
+  top: -10px; right: -10px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 0.95rem; font-weight: 700;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.22);
+}
+.pkgs:has(.pkg.selected) .pkg:not(.selected):not(.disabled) {
+  opacity: 0.45;
+  filter: saturate(0.65);
+}
 .pkg input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
 
-.pkg.tier-free.selected { border-color: var(--success); box-shadow: 0 0 0 2px rgba(30,90,58,0.18), var(--shadow-card); }
-.pkg.tier-standard.selected { border-color: var(--ink); box-shadow: 0 0 0 2px rgba(42,36,32,0.18), var(--shadow-card); }
+.pkg.tier-free.selected {
+  border-color: var(--success);
+  background: var(--success-bg);
+  box-shadow: 0 0 0 3px var(--success), var(--shadow-card);
+}
+.pkg.tier-free.selected::after { background: var(--success); }
+
+.pkg.tier-standard.selected {
+  border-color: var(--ink);
+  background: var(--paper-3);
+  box-shadow: 0 0 0 3px var(--ink), var(--shadow-card);
+}
+.pkg.tier-standard.selected::after { background: var(--ink); }
+
 .pkg.tier-featured { background: linear-gradient(180deg, var(--accent-tint) 0%, var(--paper) 70%); border-color: var(--accent-border); }
-.pkg.tier-featured.selected { border-color: var(--accent-ink); box-shadow: 0 0 0 2px rgba(108,113,196,0.28), var(--shadow-card); }
+.pkg.tier-featured.selected {
+  border-color: var(--accent-ink);
+  background: linear-gradient(180deg, var(--accent-wash) 0%, var(--accent-tint) 100%);
+  box-shadow: 0 0 0 3px var(--accent-ink), var(--shadow-card);
+}
+.pkg.tier-featured.selected::after { background: var(--accent-ink); }
 
 .pkg-head {
   display: flex; align-items: center; justify-content: space-between;
