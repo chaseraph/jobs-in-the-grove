@@ -22,6 +22,8 @@
   --brd-soft: #e7e7e7;
   --accent: #6c71c4;
   --accent-hover: #5a5fb3;
+  --accent-soft: #f3f3fb;
+  --accent-border: #d4d6ee;
   --dark: #0d0d0d;
   --gray: #6b7280;
   --gray-light: #e7e7e7;
@@ -42,6 +44,7 @@ body {
   background: var(--bgr);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  border-top: 3px solid var(--accent);
 }
 
 a { color: var(--typ); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
@@ -88,8 +91,8 @@ a:hover { color: var(--accent); }
 
 /* CTA Bar */
 .cta-bar {
-  background: var(--bgr);
-  border-bottom: 1px solid var(--brd-soft);
+  background: var(--accent-soft);
+  border-bottom: 1px solid var(--accent-border);
   padding: 1rem;
   display: flex;
   justify-content: center;
@@ -112,11 +115,11 @@ a:hover { color: var(--accent); }
 .btn:hover { transform: translateY(-1px); text-decoration: none; }
 .btn:active { transform: translateY(0); }
 .btn-gold {
-  background: var(--typ);
+  background: var(--accent);
   color: var(--bgr);
-  border-color: var(--typ);
+  border-color: var(--accent);
 }
-.btn-gold:hover { background: var(--accent); border-color: var(--accent); color: var(--bgr); }
+.btn-gold:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: var(--bgr); }
 .btn-outline {
   background: transparent;
   color: var(--typ);
@@ -186,7 +189,7 @@ a:hover { color: var(--accent); }
   flex-direction: column;
   transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
 }
-.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--typ); }
+.card:hover { box-shadow: 0 6px 20px rgba(108,113,196,0.14); transform: translateY(-2px); border-color: var(--accent); }
 .card.featured {
   border: 1px solid var(--accent);
   border-top: 3px solid var(--accent);
@@ -321,13 +324,13 @@ a:hover { color: var(--accent); }
 
 /* Footer */
 .footer {
-  background: var(--bgr);
+  background: var(--accent-soft);
   color: var(--typ-muted);
   text-align: center;
   padding: 2rem 1rem;
   font-family: var(--font-sans);
   font-size: 0.875rem;
-  border-top: 1px solid var(--brd-soft);
+  border-top: 1px solid var(--accent-border);
   margin-top: 2rem;
 }
 .footer a { color: var(--typ); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }

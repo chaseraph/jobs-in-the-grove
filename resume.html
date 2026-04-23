@@ -22,7 +22,9 @@
   --brd-soft: #e7e7e7;
   --accent: #6c71c4;
   --accent-hover: #5a5fb3;
-  --accent-soft: #efeffb;
+  --accent-soft: #f3f3fb;
+  --accent-tint: #efeffb;
+  --accent-border: #d4d6ee;
   --dark: #0d0d0d;
   --gray: #6b7280;
   --gray-light: #e7e7e7;
@@ -45,6 +47,7 @@ body {
   background: var(--bgr);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  border-top: 3px solid var(--accent);
 }
 
 a { color: var(--typ); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
@@ -115,7 +118,7 @@ a:hover { color: var(--accent); }
   color: var(--typ);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--brd-soft);
+  border-bottom: 2px solid var(--accent-border);
   letter-spacing: -0.01em;
 }
 .section-title:not(:first-child) {
@@ -243,7 +246,7 @@ a:hover { color: var(--accent); }
 }
 
 .privacy-note {
-  background: var(--accent-soft);
+  background: var(--accent-tint);
   border-left: 3px solid var(--accent);
   padding: 0.85rem 1rem;
   margin: 1.5rem 0;
@@ -270,13 +273,13 @@ a:hover { color: var(--accent); }
 .btn:active { transform: translateY(0); }
 .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 .btn-gold {
-  background: var(--typ);
+  background: var(--accent);
   color: var(--bgr);
-  border-color: var(--typ);
+  border-color: var(--accent);
   width: 100%;
   margin-top: 1rem;
 }
-.btn-gold:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
+.btn-gold:hover:not(:disabled) { background: var(--accent-hover); border-color: var(--accent-hover); }
 
 .result-message {
   margin-top: 1.5rem;
@@ -299,13 +302,13 @@ a:hover { color: var(--accent); }
 }
 
 .footer {
-  background: var(--bgr);
+  background: var(--accent-soft);
   color: var(--typ-muted);
   text-align: center;
   padding: 2rem 1rem;
   font-family: var(--font-sans);
   font-size: 0.875rem;
-  border-top: 1px solid var(--brd-soft);
+  border-top: 1px solid var(--accent-border);
   margin-top: 2rem;
 }
 .footer a { color: var(--typ); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
