@@ -9,396 +9,555 @@
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet">
-<title>Jobs in the Grove — Local Jobs for Our Community</title>
-<meta name="description" content="Find local jobs in Forest Grove, Banks, and Gales Creek, Oregon. Browse listings from community employers.">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Jobs in the Grove — Local jobs in and around Forest Grove</title>
+<meta name="description" content="Job listings from community employers in Forest Grove, Gales Creek, Banks, Gaston, Cornelius, Hillsboro, North Plains, and the Tillamook Forest.">
 <style>
 :root {
-  --bgr: #ffffff;
-  --bgr-tone: #fafafa;
-  --typ: #0d0d0d;
-  --typ-muted: #6b7280;
-  --brd: #0d0d0d;
-  --brd-soft: #e7e7e7;
+  --paper: #f9f6ed;
+  --paper-2: #f1ecdb;
+  --paper-3: #ede7d1;
+  --ink: #2a2420;
+  --ink-2: #524a42;
+  --ink-3: #857c70;
+  --rule: #d6cfbd;
+  --rule-soft: #e6dfcc;
   --accent: #6c71c4;
-  --accent-hover: #5a5fb3;
-  --accent-soft: #f3f3fb;
+  --accent-ink: #5a5fb3;
+  --accent-wash: #f3f3fb;
+  --accent-tint: #efeffb;
   --accent-border: #d4d6ee;
-  --dark: #0d0d0d;
-  --gray: #6b7280;
-  --gray-light: #e7e7e7;
-  --white: #ffffff;
-  --red: #a23232;
-  --radius: 4px;
-  --shadow: 0 1px 2px rgba(13,13,13,0.04);
-  --shadow-md: 0 4px 14px rgba(13,13,13,0.08);
+  --ochre: #c98f2f;
+  --fg-red: #a23232;
+  --success: #1e5a3a;
+  --success-bg: #e8f0ea;
+  --radius: 2px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 1px 0 rgba(42,36,32,0.04);
+  --shadow-card: 0 2px 0 rgba(42,36,32,0.04), 0 10px 28px -18px rgba(42,36,32,0.18);
   --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+html, body { background: var(--paper); }
 body {
   font-family: var(--font-serif);
-  color: var(--typ);
-  background: var(--bgr);
-  line-height: 1.6;
+  color: var(--ink);
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   border-top: 3px solid var(--accent);
 }
 
-a { color: var(--typ); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
-a:hover { color: var(--accent); }
+a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--rule); }
+a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
-/* Header */
-.header {
-  background: var(--bgr);
-  color: var(--typ);
-  padding: 3rem 1.5rem 2rem;
-  text-align: center;
-  border-bottom: 1px solid var(--brd-soft);
-}
-.header h1 {
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  color: var(--typ);
-}
-.header h1 a { color: var(--typ); text-decoration: none; }
-.header p {
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  color: var(--typ-muted);
-  font-weight: 400;
-}
-.beta-badge {
-  display: inline-block;
-  background: var(--accent);
-  color: var(--white);
-  font-family: var(--font-sans);
-  font-size: 0.625rem;
-  font-weight: 700;
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
-  text-transform: uppercase;
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 1.25rem; }
+
+/* ---- Masthead ---- */
+.masthead { padding: 1.75rem 0 0.9rem; border-bottom: 1px solid var(--rule); background: var(--paper); }
+.masthead-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.logo-link { display: inline-flex; align-items: center; text-decoration: none; }
+.logo-link img { height: 44px; width: auto; display: block; }
+.masthead-meta { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.masthead-meta .sep { margin: 0 0.45rem; color: var(--rule); }
+.masthead-meta a { text-decoration: none; color: var(--ink-3); }
+.masthead-meta a:hover { color: var(--accent); }
+
+.kicker {
+  margin-top: 0.9rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--rule-soft);
+  display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
-  vertical-align: super;
-  margin-left: 0.4rem;
+  text-transform: uppercase;
+  color: var(--ink-2);
 }
+.kicker span { position: relative; }
+.kicker span:not(:last-child)::after { content: "·"; position: absolute; right: -0.55rem; top: -0.05em; color: var(--ink-3); }
 
-/* CTA Bar */
-.cta-bar {
-  background: var(--accent-soft);
-  border-bottom: 1px solid var(--accent-border);
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+/* ---- Hero ---- */
+.hero { padding: 3.2rem 0 2.4rem; border-bottom: 1px solid var(--rule); }
+.hero h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(2.25rem, 5.6vw, 3.85rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 18ch;
 }
+.hero h1 em { font-style: italic; font-weight: 500; color: var(--accent); }
+.hero .lede {
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 1.9vw, 1.25rem);
+  color: var(--ink-2);
+  margin-top: 1.05rem;
+  max-width: 56ch;
+  line-height: 1.45;
+}
+.hero-ctas { margin-top: 1.6rem; display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
 .btn {
-  display: inline-block;
-  padding: 0.625rem 1.5rem;
-  border-radius: var(--radius);
+  display: inline-flex; align-items: center; justify-content: center;
   font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
+  font-size: 0.88rem; font-weight: 600;
+  padding: 0.62rem 1.15rem;
+  border-radius: var(--radius);
   border: 1px solid transparent;
-  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
+  cursor: pointer;
   text-decoration: none;
   letter-spacing: 0.01em;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
 }
-.btn:hover { transform: translateY(-1px); text-decoration: none; }
+.btn:hover { text-decoration: none; transform: translateY(-1px); }
 .btn:active { transform: translateY(0); }
-.btn-gold {
-  background: var(--accent);
-  color: var(--bgr);
-  border-color: var(--accent);
-}
-.btn-gold:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: var(--bgr); }
-.btn-outline {
-  background: transparent;
-  color: var(--typ);
-  border: 1px solid var(--typ);
-}
-.btn-outline:hover { background: var(--typ); color: var(--bgr); }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); color: #fff; }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: var(--paper); }
+.btn-outline { background: transparent; color: var(--ink); border-color: var(--rule); }
+.btn-outline:hover { background: var(--paper-2); border-color: var(--ink); color: var(--ink); }
+.btn-gold { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-gold:hover { background: var(--accent-ink); border-color: var(--accent-ink); color: #fff; }
 
-/* Filter Bar */
-.filter-bar {
-  max-width: 1200px;
-  margin: 1.5rem auto 0;
-  padding: 0 1rem;
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  align-items: center;
+/* ---- Toolbar ---- */
+.toolbar {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-2);
 }
-.filter-bar select,
-.filter-bar input[type="text"] {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--brd-soft);
-  border-radius: var(--radius);
+.toolbar-inner {
+  display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;
+}
+.toolbar select,
+.toolbar input[type="text"] {
   font-family: var(--font-sans);
-  font-size: 0.875rem;
-  background: var(--bgr);
-  color: var(--typ);
-  flex: 1;
-  min-width: 160px;
+  font-size: 0.9rem;
+  padding: 0.55rem 0.75rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  min-width: 170px;
+  flex: 1 1 170px;
+  max-width: 240px;
 }
-.filter-bar select:focus,
-.filter-bar input:focus {
+.toolbar input[type="text"] { max-width: none; flex: 2 1 220px; }
+.toolbar select:focus,
+.toolbar input:focus {
   outline: 2px solid var(--accent);
   outline-offset: -1px;
   border-color: var(--accent);
 }
 .btn-clear {
-  background: transparent;
-  color: var(--typ-muted);
-  border: 1px solid var(--brd-soft);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius);
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: 0.85rem;
+  padding: 0.55rem 1rem;
+  background: transparent;
+  color: var(--ink-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
   cursor: pointer;
 }
-.btn-clear:hover { background: var(--bgr-tone); color: var(--typ); border-color: var(--typ); }
+.btn-clear:hover { color: var(--ink); border-color: var(--ink); }
 
-/* Listings */
-.listings {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem 3rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-@media (min-width: 640px) { .listings { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 960px) { .listings { grid-template-columns: repeat(3, 1fr); } }
-
-.card {
-  background: var(--bgr);
+.error-banner {
+  background: #fbeaea; color: #7a2a2a; border: 1px solid #e8c5c5;
+  padding: 0.75rem 1rem;
   border-radius: var(--radius);
-  border: 1px solid var(--brd-soft);
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  font-family: var(--font-sans); font-size: 0.9rem; text-align: center;
+  margin: 1.25rem 0; display: none;
 }
-.card:hover { box-shadow: 0 6px 20px rgba(108,113,196,0.14); transform: translateY(-2px); border-color: var(--accent); }
-.card.featured {
-  border: 1px solid var(--accent);
-  border-top: 3px solid var(--accent);
-  padding-top: calc(1.5rem - 2px);
+.error-banner.visible { display: block; }
+
+/* ---- Section heads ---- */
+.section-head {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 2.5rem 0 1.15rem;
 }
-.card-featured-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
+.section-head h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 1.65rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.section-head .rule { flex: 1; height: 1px; background: var(--rule); }
+.section-head .count {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
-  color: var(--accent);
-  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* ---- Featured row (3-up cards) ---- */
+.featured-grid {
+  display: grid; grid-template-columns: 1fr; gap: 1rem;
+}
+@media (min-width: 720px) { .featured-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .featured-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.featured-grid .card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.25rem 1.25rem;
+  display: flex; flex-direction: column;
+  box-shadow: var(--shadow-soft);
+  transition: border-color 0.15s, box-shadow 0.2s, transform 0.15s;
+  position: relative;
+}
+.featured-grid .card:hover { box-shadow: var(--shadow-card); transform: translateY(-2px); border-color: var(--accent); border-top-color: var(--accent-ink); }
+
+.card-featured-badge {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--ochre);
+  margin-bottom: 0.6rem;
 }
 .card-title {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.3;
-  margin-bottom: 0.35rem;
-  letter-spacing: -0.01em;
-  color: var(--typ);
+  font-size: 1.25rem; font-weight: 600;
+  line-height: 1.2; letter-spacing: -0.01em;
+  margin-bottom: 0.3rem;
+  color: var(--ink);
 }
-.card-title a { color: var(--typ); text-decoration: none; }
+.card-title a { color: var(--ink); text-decoration: none; }
 .card-title a:hover { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .card-company {
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  color: var(--typ-muted);
-  margin-bottom: 0.75rem;
+  font-family: var(--font-sans); font-size: 0.88rem;
+  color: var(--ink-2); margin-bottom: 0.75rem; font-weight: 500;
 }
-.card-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-  align-items: center;
-}
+.card-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem; align-items: center; }
 .badge {
   display: inline-block;
-  padding: 0.22rem 0.6rem;
-  border-radius: 999px;
   font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-size: 0.68rem; font-weight: 600;
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-pill);
+  text-transform: uppercase; letter-spacing: 0.05em;
   line-height: 1.4;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
-.badge-fulltime { background: #e8f0ea; color: #1e5a3a; }
-.badge-parttime { background: #e5ebf5; color: #26407a; }
-.badge-contract { background: #f5ece0; color: #7d4a1a; }
-.badge-internship { background: #ece8f5; color: #4a3a8c; }
-.badge-seasonal { background: #f5e5e5; color: #7a2a2a; }
-.badge-volunteer { background: #efefef; color: #444; }
-.badge-remote { background: #e3eef5; color: #1a4a6e; }
+.badge-fulltime { background: #e3efe6; color: #1e5a3a; }
+.badge-parttime { background: #e1e8f2; color: #26407a; }
+.badge-contract { background: #f2e7d4; color: #7d4a1a; }
+.badge-internship { background: #e7e3f2; color: #4a3a8c; }
+.badge-seasonal { background: #f3e0e0; color: #7a2a2a; }
+.badge-volunteer { background: #e9e6dd; color: #4d4640; }
+.badge-remote { background: #dfebf2; color: #1a4a6e; }
 .card-location {
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  color: var(--typ-muted);
+  font-family: var(--font-sans); font-size: 0.78rem;
+  color: var(--ink-3);
 }
 .card-compensation {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--typ);
-  margin-bottom: 0.5rem;
+  font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600;
+  color: var(--ink); margin-bottom: 0.55rem;
 }
 .card-desc {
   font-family: var(--font-serif);
-  font-size: 0.95rem;
-  color: var(--typ);
-  margin-bottom: 1rem;
+  font-size: 0.98rem; line-height: 1.5;
+  color: var(--ink-2); margin-bottom: 1.1rem;
   flex: 1;
-  line-height: 1.55;
 }
-.card-actions {
-  margin-top: auto;
+.card-actions { margin-top: auto; }
+.card-actions .btn { width: 100%; padding: 0.55rem 1rem; font-size: 0.85rem; }
+
+/* ---- Dense listings (all openings) ---- */
+.listings { display: flex; flex-direction: column; border-top: 1px solid var(--rule); }
+.listings .card {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  padding: 1.15rem 0.25rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.3rem 1rem;
+  align-items: baseline;
+  transition: background 0.15s;
 }
-.card-actions .btn {
-  width: 100%;
-  text-align: center;
-  font-size: 0.875rem;
-  padding: 0.55rem 1rem;
+.listings .card:hover { background: var(--paper-2); }
+.listings .card .card-featured-badge { display: none; }
+.listings .card .card-title { font-size: 1.1rem; margin-bottom: 0.15rem; font-weight: 600; grid-column: 1; }
+.listings .card .card-company { font-size: 0.85rem; margin-bottom: 0.35rem; grid-column: 1; }
+.listings .card .card-meta { margin-bottom: 0.4rem; grid-column: 1; gap: 0.35rem; }
+.listings .card .card-compensation { font-size: 0.85rem; margin-bottom: 0.25rem; grid-column: 1; color: var(--ink-2); }
+.listings .card .card-desc {
+  font-family: var(--font-serif); font-size: 0.93rem;
+  color: var(--ink-2); margin-bottom: 0;
+  grid-column: 1;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 72ch;
+}
+.listings .card .card-actions { grid-column: 2; grid-row: 1 / span 5; align-self: center; margin-top: 0; }
+.listings .card .card-actions .btn { width: auto; padding: 0.45rem 0.95rem; font-size: 0.82rem; white-space: nowrap; }
+
+@media (max-width: 640px) {
+  .listings .card { grid-template-columns: 1fr; }
+  .listings .card .card-actions { grid-column: 1; grid-row: auto; margin-top: 0.6rem; align-self: stretch; }
+  .listings .card .card-actions .btn { width: 100%; }
 }
 
-/* States */
+/* ---- State messages ---- */
 .state-message {
-  grid-column: 1 / -1;
+  padding: 3.5rem 1rem;
   text-align: center;
-  padding: 4rem 1rem;
+  grid-column: 1 / -1;
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-2);
 }
-.state-message h2 {
+.state-message h3 {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  color: var(--typ);
+  font-size: 1.3rem; font-weight: 500;
+  color: var(--ink); margin-bottom: 0.4rem;
   letter-spacing: -0.01em;
 }
 .state-message p {
-  font-family: var(--font-sans);
-  color: var(--typ-muted);
-  margin-bottom: 1rem;
+  font-family: var(--font-sans); font-size: 0.9rem;
+  color: var(--ink-2); margin-bottom: 1rem;
+  max-width: 48ch; margin-left: auto; margin-right: auto;
 }
 .spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid var(--brd-soft);
-  border-top-color: var(--typ);
+  width: 32px; height: 32px;
+  border: 3px solid var(--rule); border-top-color: var(--accent);
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
   margin: 0 auto 1rem;
+  animation: spin 0.85s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.error-banner {
-  max-width: 1200px;
-  margin: 1rem auto;
-  padding: 0.75rem 1rem;
-  background: #fbeaea;
-  color: #7a2a2a;
-  border: 1px solid #e8c5c5;
-  border-radius: var(--radius);
-  font-family: var(--font-sans);
-  text-align: center;
-  display: none;
-}
-
-/* Footer */
-.footer {
-  background: var(--accent-soft);
-  color: var(--typ-muted);
-  text-align: center;
-  padding: 2rem 1rem;
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
+/* ---- Newsletter block ---- */
+.newsletter {
+  margin: 3.5rem 0 0;
+  padding: 2.25rem 2rem;
+  background: var(--accent-wash);
   border-top: 1px solid var(--accent-border);
-  margin-top: 2rem;
+  border-bottom: 1px solid var(--accent-border);
 }
-.footer a { color: var(--typ); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
-.footer a:hover { color: var(--accent); }
-.footer-links {
-  margin-top: 0.5rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+.newsletter-inner { max-width: 1120px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1.6rem 2.2rem; align-items: center; padding: 0 1.25rem; }
+.newsletter-text { flex: 1 1 300px; min-width: 260px; }
+.newsletter .kicker-small {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 0.4rem;
+}
+.newsletter h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 1.75rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+  line-height: 1.15;
+}
+.newsletter p {
+  font-family: var(--font-serif); font-size: 1rem;
+  color: var(--ink-2);
+  max-width: 48ch;
+}
+.newsletter-action { flex: 0 0 auto; }
+
+/* ---- Footer ---- */
+.foot {
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+  padding: 2.5rem 0 2rem;
+  margin-top: 0;
+}
+.foot-inner {
+  max-width: 1120px; margin: 0 auto;
+  padding: 0 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem 2rem;
+}
+.foot-col h4 {
+  font-family: var(--font-mono);
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 0.7rem;
+}
+.foot-col p, .foot-col li, .foot-col a {
+  font-family: var(--font-sans); font-size: 0.88rem;
+  color: var(--ink-2); line-height: 1.65;
+}
+.foot-col ul { list-style: none; }
+.foot-col a { text-decoration: none; color: var(--ink-2); }
+.foot-col a:hover { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.foot-colophon {
+  max-width: 1120px; margin: 2rem auto 0;
+  padding: 1.1rem 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem; justify-content: space-between;
+  font-family: var(--font-mono); font-size: 0.7rem;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--ink-3);
 }
 </style>
 </head>
 <body>
 
-<header class="header">
-  <h1>Jobs in the Grove <span class="beta-badge">Beta</span></h1>
-  <p>Your next opportunity is closer than you think.</p>
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a href="index.html" class="logo-link" aria-label="Jobs in the Grove — News in the Grove">
+        <img src="https://storage.ghost.io/c/4d/c2/4dc23203-1c3b-4a8b-b5c6-43fe36566a94/content/images/size/w600/2025/01/LOGO_HORIZ_AMBER-1.png" alt="News in the Grove" width="240" height="60">
+      </a>
+      <div class="masthead-meta">
+        <span>Jobs Board</span>
+        <span class="sep">·</span>
+        <a href="https://newsinthegrove.com" target="_blank" rel="noopener">newsinthegrove.com</a>
+      </div>
+    </div>
+    <div class="kicker">
+      <span>Forest Grove</span>
+      <span>Gales Creek</span>
+      <span>Banks</span>
+      <span>Gaston</span>
+      <span>Cornelius</span>
+      <span>Hillsboro</span>
+      <span>Tillamook Forest</span>
+      <span>North Plains</span>
+    </div>
+  </div>
 </header>
 
-<nav class="cta-bar">
-  <a href="post.html" class="btn btn-gold">Hiring? Post a Job</a>
-  <a href="resume.html" class="btn btn-outline">I'm looking for work</a>
-</nav>
+<section class="hero">
+  <div class="wrap">
+    <h1>Jobs in <em>and around</em> Forest Grove.</h1>
+    <p class="lede">Openings posted by the people doing the hiring — from Forest Grove, Gales Creek, Banks, Gaston, Cornelius, Hillsboro, North Plains, and the Tillamook Forest.</p>
+    <div class="hero-ctas">
+      <a href="post.html" class="btn btn-primary">Post a Job</a>
+      <a href="resume.html" class="btn btn-ghost">I&rsquo;m looking for work</a>
+    </div>
+  </div>
+</section>
 
-<div class="filter-bar">
-  <select id="filter-category" aria-label="Filter by category">
-    <option value="">All Categories</option>
-    <option value="Agriculture">Agriculture</option>
-    <option value="Construction">Construction</option>
-    <option value="Education">Education</option>
-    <option value="Food Service">Food Service</option>
-    <option value="Government">Government</option>
-    <option value="Healthcare">Healthcare</option>
-    <option value="Manufacturing">Manufacturing</option>
-    <option value="Office">Office</option>
-    <option value="Retail">Retail</option>
-    <option value="Technology">Technology</option>
-    <option value="Transportation">Transportation</option>
-    <option value="Other">Other</option>
-  </select>
-  <select id="filter-type" aria-label="Filter by job type">
-    <option value="">All Job Types</option>
-    <option value="Full-time">Full-time</option>
-    <option value="Part-time">Part-time</option>
-    <option value="Contract">Contract</option>
-    <option value="Internship">Internship</option>
-    <option value="Seasonal">Seasonal</option>
-    <option value="Volunteer">Volunteer</option>
-  </select>
-  <input type="text" id="filter-search" placeholder="Search jobs..." aria-label="Search jobs">
-  <button class="btn-clear" id="btn-clear-filters">Clear filters</button>
+<section class="toolbar">
+  <div class="wrap toolbar-inner">
+    <select id="filter-category" aria-label="Filter by category">
+      <option value="">All categories</option>
+      <option value="Agriculture">Agriculture</option>
+      <option value="Construction">Construction</option>
+      <option value="Education">Education</option>
+      <option value="Food Service">Food Service</option>
+      <option value="Government">Government</option>
+      <option value="Healthcare">Healthcare</option>
+      <option value="Manufacturing">Manufacturing</option>
+      <option value="Office">Office</option>
+      <option value="Retail">Retail</option>
+      <option value="Technology">Technology</option>
+      <option value="Transportation">Transportation</option>
+      <option value="Other">Other</option>
+    </select>
+    <select id="filter-type" aria-label="Filter by job type">
+      <option value="">All job types</option>
+      <option value="Full-time">Full-time</option>
+      <option value="Part-time">Part-time</option>
+      <option value="Contract">Contract</option>
+      <option value="Internship">Internship</option>
+      <option value="Seasonal">Seasonal</option>
+      <option value="Volunteer">Volunteer</option>
+    </select>
+    <input type="text" id="filter-search" placeholder="Search title, company, location&hellip;" aria-label="Search jobs">
+    <button class="btn-clear" id="btn-clear-filters">Clear</button>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="error-banner" id="error-banner" role="alert"></div>
+
+  <section class="featured" id="featured-section" style="display:none;">
+    <div class="section-head">
+      <h2>Featured this week</h2>
+      <div class="rule"></div>
+      <div class="count" id="featured-count"></div>
+    </div>
+    <div class="featured-grid" id="featured-listings"></div>
+  </section>
+
+  <section class="all">
+    <div class="section-head">
+      <h2>All openings</h2>
+      <div class="rule"></div>
+      <div class="count" id="all-count"></div>
+    </div>
+    <div class="listings" id="listings">
+      <div class="state-message" id="loading-state">
+        <div class="spinner"></div>
+        <p>Loading job listings&hellip;</p>
+      </div>
+    </div>
+  </section>
 </div>
 
-<div class="error-banner" id="error-banner" role="alert"></div>
-
-<main class="listings" id="listings">
-  <div class="state-message" id="loading-state">
-    <div class="spinner"></div>
-    <p>Loading job listings...</p>
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <div class="newsletter-text">
+      <span class="kicker-small">Friday Jobs Dispatch</span>
+      <h2>New listings, in your inbox.</h2>
+      <p>Open jobs go out Friday mornings inside the News in the Grove newsletter.</p>
+    </div>
+    <div class="newsletter-action">
+      <a href="https://newsinthegrove.com/#/portal/signup" target="_blank" rel="noopener" class="btn btn-primary">Subscribe</a>
+    </div>
   </div>
-</main>
+</section>
 
-<footer class="footer">
-  <div>A community project from <a href="https://newsinthegrove.com">News in the Grove</a></div>
-  <div class="footer-links">
-    <a href="post.html">Post a Job</a>
-    <a href="resume.html">Submit Your Profile</a>
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-col">
+      <h4>About</h4>
+      <p>Jobs in the Grove is a community jobs board from <a href="https://newsinthegrove.com">News in the Grove</a>. Listings come from local employers — not scraped, not syndicated.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Coverage</h4>
+      <ul>
+        <li>Forest Grove</li>
+        <li>Gales Creek</li>
+        <li>Banks &middot; Gaston</li>
+        <li>Cornelius &middot; Hillsboro</li>
+        <li>North Plains</li>
+        <li>Tillamook State Forest</li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>For employers</h4>
+      <ul>
+        <li><a href="post.html">Post a Job</a></li>
+        <li><a href="https://newsinthegrove.com/business-club" target="_blank" rel="noopener">Business Club</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>For job seekers</h4>
+      <ul>
+        <li><a href="index.html">Browse openings</a></li>
+        <li><a href="resume.html">Submit your profile</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-colophon">
+    <span>&copy; News in the Grove</span>
+    <span>Forest Grove, Oregon</span>
+    <span><a href="https://newsinthegrove.com" target="_blank" rel="noopener">newsinthegrove.com</a></span>
   </div>
 </footer>
 
@@ -407,12 +566,16 @@ a:hover { color: var(--accent); }
   var API_URL = 'https://jobs-api.firestarternews.com/api/jobs/listings';
   var listings = [];
   var listingsEl = document.getElementById('listings');
+  var featuredEl = document.getElementById('featured-listings');
+  var featuredSection = document.getElementById('featured-section');
   var loadingEl = document.getElementById('loading-state');
   var errorEl = document.getElementById('error-banner');
   var filterCategory = document.getElementById('filter-category');
   var filterType = document.getElementById('filter-type');
   var filterSearch = document.getElementById('filter-search');
   var btnClear = document.getElementById('btn-clear-filters');
+  var featuredCountEl = document.getElementById('featured-count');
+  var allCountEl = document.getElementById('all-count');
 
   var typeBadgeClass = {
     'Full-time': 'badge-fulltime',
@@ -425,7 +588,7 @@ a:hover { color: var(--accent); }
 
   function truncate(str, len) {
     if (!str) return '';
-    return str.length > len ? str.slice(0, len).trimEnd() + '...' : str;
+    return str.length > len ? str.slice(0, len).trimEnd() + '…' : str;
   }
 
   function escapeHtml(str) {
@@ -435,14 +598,14 @@ a:hover { color: var(--accent); }
     return div.innerHTML;
   }
 
-  function renderCard(job) {
-    var isFeatured = job.featured || false;
+  function renderCard(job, isInFeaturedSection) {
     var typeClass = typeBadgeClass[job.job_type] || 'badge-volunteer';
     var remoteLabel = job.remote_options && job.remote_options !== 'On-site';
+    var descLen = isInFeaturedSection ? 150 : 180;
 
-    var html = '<article class="card' + (isFeatured ? ' featured' : '') + '">';
+    var html = '<article class="card' + (job.featured ? ' featured' : '') + '">';
 
-    if (isFeatured) {
+    if (job.featured && isInFeaturedSection) {
       html += '<div class="card-featured-badge">&#9733; Featured</div>';
     }
 
@@ -470,14 +633,15 @@ a:hover { color: var(--accent); }
       html += '<div class="card-compensation">' + escapeHtml(job.compensation) + '</div>';
     }
 
-    html += '<div class="card-desc">' + escapeHtml(truncate(job.description, 150)) + '</div>';
+    if (job.description) {
+      html += '<div class="card-desc">' + escapeHtml(truncate(job.description, descLen)) + '</div>';
+    }
 
     html += '<div class="card-actions">';
-    if (job.how_to_apply || job.application_url) {
-      var href = job.application_url || '#';
-      html += '<a href="' + escapeHtml(href) + '" class="btn btn-gold"' + (job.application_url ? ' target="_blank" rel="noopener"' : '') + '>';
-      html += job.application_url ? 'Apply' : 'See details';
-      html += '</a>';
+    if (job.application_url) {
+      html += '<a href="' + escapeHtml(job.application_url) + '" class="btn btn-gold" target="_blank" rel="noopener">Apply</a>';
+    } else if (job.how_to_apply) {
+      html += '<a href="#" class="btn btn-outline" onclick="return false;" aria-disabled="true">See details</a>';
     }
     html += '</div>';
 
@@ -500,30 +664,45 @@ a:hover { color: var(--accent); }
       return true;
     });
 
-    // Sort: featured first, then by date
-    filtered.sort(function(a, b) {
-      if (a.featured && !b.featured) return -1;
-      if (!a.featured && b.featured) return 1;
-      return 0;
-    });
+    var featured = filtered.filter(function(j) { return j.featured; });
+    var regular = filtered.filter(function(j) { return !j.featured; });
 
-    if (filtered.length === 0) {
-      listingsEl.innerHTML =
-        '<div class="state-message">' +
-          '<h2>Nothing matching those filters</h2>' +
-          '<p>Try broadening your search, or check back soon &mdash; new jobs pop up all the time.</p>' +
-          '<a href="post.html" class="btn btn-gold">Post a Job</a>' +
-        '</div>';
-      return;
+    // Featured section
+    if (featured.length > 0) {
+      featuredSection.style.display = '';
+      featuredEl.innerHTML = featured.map(function(j) { return renderCard(j, true); }).join('');
+      featuredCountEl.textContent = featured.length + (featured.length === 1 ? ' listing' : ' listings');
+    } else {
+      featuredSection.style.display = 'none';
+      featuredEl.innerHTML = '';
     }
 
-    listingsEl.innerHTML = filtered.map(renderCard).join('');
+    // All openings section
+    if (regular.length === 0 && featured.length === 0) {
+      listingsEl.innerHTML =
+        '<div class="state-message">' +
+          '<h3>Nothing matching those filters</h3>' +
+          '<p>Try broadening your search, or check back soon &mdash; new listings come in all the time.</p>' +
+          '<a href="post.html" class="btn btn-primary">Post a Job</a>' +
+        '</div>';
+      allCountEl.textContent = '';
+    } else if (regular.length === 0) {
+      listingsEl.innerHTML =
+        '<div class="state-message">' +
+          '<h3>That’s all the featured listings this week.</h3>' +
+          '<p>No other openings match those filters right now.</p>' +
+        '</div>';
+      allCountEl.textContent = '0 listings';
+    } else {
+      listingsEl.innerHTML = regular.map(function(j) { return renderCard(j, false); }).join('');
+      allCountEl.textContent = regular.length + (regular.length === 1 ? ' listing' : ' listings');
+    }
   }
 
   function showError(msg) {
     errorEl.textContent = msg;
-    errorEl.style.display = 'block';
-    loadingEl.remove();
+    errorEl.classList.add('visible');
+    if (loadingEl && loadingEl.parentNode) loadingEl.parentNode.removeChild(loadingEl);
   }
 
   function fetchListings() {
@@ -534,20 +713,21 @@ a:hover { color: var(--accent); }
       })
       .then(function(data) {
         listings = Array.isArray(data) ? data : (data.listings || data.jobs || []);
-        loadingEl.remove();
+        if (loadingEl && loadingEl.parentNode) loadingEl.parentNode.removeChild(loadingEl);
         if (listings.length === 0) {
+          featuredSection.style.display = 'none';
           listingsEl.innerHTML =
             '<div class="state-message">' +
-              '<h2>No jobs posted yet &mdash; be the first!</h2>' +
-              '<p>Know someone hiring? Spread the word. New listings show up here as soon as they\'re approved.</p>' +
-              '<a href="post.html" class="btn btn-gold">Post a Job</a>' +
+              '<h3>No jobs posted yet &mdash; be the first.</h3>' +
+              '<p>Know a local employer who&rsquo;s hiring? Send them this way. Listings show up here as soon as they clear review.</p>' +
+              '<a href="post.html" class="btn btn-primary">Post a Job</a>' +
             '</div>';
           return;
         }
         renderListings();
       })
-      .catch(function(err) {
-        showError('Unable to load job listings. Please try again later.');
+      .catch(function() {
+        showError('Unable to load job listings right now. Please try again in a moment.');
       });
   }
 
